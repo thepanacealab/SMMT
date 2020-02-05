@@ -10,6 +10,21 @@ We are very grateful for the support on this work.
 
 ![Architecture](http://www.jmbanda.com/SMMT-v1.png)
 
+## Data Acquisition Tools:
+1. **Twitter hydration tool** - This script will hydrate tweet ID’s provided by others. 
+1. **Twitter gathering tool** - This script will allow users to specify hashtags and capture from the twitter faucet new tweets with the given hashtag.
+1. **Reddit scraping tool** - This script will scrape reddit subgroups that are specified
+
+
+## Data Preprocessing Tools: 
+1. **Twitter JSON extraction tool** - While seemingly trivial, most biomedical researchers do not want to work with JSON objects. This tool will take the fields the researcher wants and output a simple to use CSV file created from the provided data. 
+
+## Data Annotation and Standardization Tools: 
+1. **Spacy dictionary-based annotation pipeline** This is the tool that will require the most work during the hackathon. This pipeline will be available as a service as well, with the user providing their dictionaries and feeding data directly.  
+1. **Dictionary generation tool** This tool will transform ontologies or provided dictionary files into spacy compliant dictionaries to use with the previous pipeline.
+1. **Manual annotation hooks to tools like brat annotation tools** 
+
+
 # Everything below is a work in progress
 
 Here is the documentation for the Social Media Mining
