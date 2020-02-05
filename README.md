@@ -29,21 +29,18 @@ We are very grateful for the support on this work.
 1. Python 3+
 
 1. Spacy 
-
 ` pip install spacy `
 
 1. Twarc
-
 ` pip install twarc `
 
 1. Tweepy
-
 ` pip install tweepy `
 
 # Usage
 
 1. Clone repository
-1. Each tool and their use is described on their individual pages 
+1. Each tool and their usage is described on their individual pages 
 
 # Everything below is a work in progress
 
