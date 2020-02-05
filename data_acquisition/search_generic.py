@@ -2,7 +2,7 @@ try:
     import json
 except ImportError:
     import simplejson as json
-import urllib2
+#import urllib2
 import urllib
 import codecs
 import time
@@ -18,10 +18,10 @@ import sys
 fhLog = codecs.open("LOG.txt",'a','UTF-8')
 def logPrint(s):
 	fhLog.write("%s\n"%s)
-	print s
+	print (s)
 
 #Update this line with the terms you want to search for
-terms =  ["term1","term2","term3"]
+terms =  ["funko"]
 
 
 from auth import TwitterAuth
@@ -43,7 +43,7 @@ for term in terms:
 	count=1
 	while True:
 		try:
-			fh=open("output/"+term+"_" + str(count) + ".json","r")
+			fh=open(term+"_" + str(count) + ".json","r")
 			result=fh.read()
 			fh.close()
 			wait=0
@@ -53,7 +53,7 @@ for term in terms:
 			else:
 				result=api.search(count=100,q=term,max_id=minid,result_type="recent")
 			#The following will produce errors if the filesystem doesn't support characters used in the search term! (also above in try block)
-			fh=open("output/"+term+"_" + str(count) + ".json","w")
+			fh=open(term+"_" + str(count) + ".json","w")
 			fh.write(result)
 			fh.close()
 			wait=5
