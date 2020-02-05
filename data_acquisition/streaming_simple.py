@@ -7,10 +7,6 @@ import twitter
 import csv
 
 #Variables that contains the user credentials to access Twitter API 
-consumer_key="6m23Sb281bnbQc45EJOLptTof"
-consumer_secret="YWS12KIRaBd7btOByPhXcvKRWbAdHBBl4ktJr5lXo31Kf4mNQC"
-access_token="1173363240027508737-2wGuqHB7w6c6XPhi3wXukOBFSA2aKe"
-access_token_secret="UZjIqWw21h7pf4du9vTAovGFEligJwGMf2KxBNaF9qrQT"
 
 #Very simple (non-production) Twitter stream example
 #1. Download / install python and tweepy (pip install tweepy)
