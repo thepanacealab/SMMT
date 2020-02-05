@@ -24,6 +24,18 @@ We are very grateful for the support on this work.
 1. **Dictionary generation tool** This tool will transform ontologies or provided dictionary files into spacy compliant dictionaries to use with the previous pipeline.
 1. **Manual annotation hooks to tools like brat annotation tools** 
 
+# Dependencies and versions used
+
+1. Python 3 +
+
+1. Spacy 
+` pip install spacy `
+
+1. Twarc
+` pip install twarc `
+
+1. Tweepy
+` pip install tweepy `
 
 # Everything below is a work in progress
 
