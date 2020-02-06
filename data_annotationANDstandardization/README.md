@@ -1,6 +1,6 @@
-## Social Media Mining Toolkit - Data Annotation and Standardization Tools
+# Social Media Mining Toolkit - Data Annotation and Standardization Tools
 
-# Utilities available:
+## Utilities available:
 
 **SMMT_NER_basic.py** This utility will annotate tweets in a given TSV file (TSV_source.tsv) with format tweetID tab Text, with a given dictionary dictionary_file.txt - with format termID TAB termString. The output will be saved in the give outputfile.tsv, with the format tweetID TAB termID TAB startSpan TAB endSpan.
  
