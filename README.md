@@ -37,6 +37,12 @@ We are very grateful for the support on this work.
 1. Tweepy
 ` pip install tweepy `
 
+1. argparse
+` pip install argparse `
+
+1. xtract
+` pip install xtract `
+
 # Usage
 
 1. Clone repository
