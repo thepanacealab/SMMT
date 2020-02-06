@@ -24,6 +24,11 @@ We are very grateful for the support on this work.
 1. **Dictionary generation tool** This tool will transform ontologies or provided dictionary files into spacy compliant dictionaries to use with the previous pipeline.
 1. **Manual annotation hooks to tools like brat annotation tools** 
 
+# Twitter Keys
+**This is a very important step, if you do not have any Twitter API keys, none of the software that uses Twitter will work without it**
+
+Make sure you create a copy of copy_auth.py and call it auth.py, replacing the corresponding text inside with the proper keys.
+
 # Dependencies and versions used
 
 1. Python 3+
@@ -42,6 +47,36 @@ We are very grateful for the support on this work.
 
 1. xtract
 ` pip install xtract `
+
+**NOTE:** If you are using the scraping utility, install the following dependencies.
+
+1. Xvfb
+`
+sudo yum install Xvfb
+`
+1. Firefox
+
+sudo yum install firefox
+
+1. selenium
+
+`
+pip install -U selenium
+`
+1. pyvirtualdisplay
+pip install pyvirtualdisplay
+
+1. GeckoDriver
+
+sudo yum install jq
+and then use the provided utility:
+`
+bash SMMT/data_acquisition/geckoDriverInstall.sh
+`
+
+If you still have issues or the Firefox window is popping up through your X11, follow this:
+https://www.tienle.com/2016/09-20/run-selenium-firefox-browser-centos.html
+
 
 # Usage
 
