@@ -54,18 +54,15 @@ Make sure you create a copy of copy_auth.py and call it auth.py, replacing the c
 ` sudo yum install Xvfb `
 
 1. Firefox
-
 ` sudo yum install firefox `
 
 1. selenium
-
 ` pip install -U selenium `
 
 1. pyvirtualdisplay
 ` pip install pyvirtualdisplay `
 
 1. GeckoDriver
-
 ` sudo yum install jq `
 
 and then use the provided utility:
