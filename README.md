@@ -33,9 +33,12 @@ Make sure you create a copy of copy_auth.py and call it auth.py, replacing the c
 
 1. Python 3+
 
-1. Spacy 
-` pip install spacy `
-
+1. Spacy
+``` 
+pip install spacy 
+python -m spacy download en
+python -m spacy download en_core_web_sm
+```
 1. Twarc
 ` pip install twarc `
 
