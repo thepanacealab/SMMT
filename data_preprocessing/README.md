@@ -1,6 +1,6 @@
-## Social Media Mining Toolkit - Data Preprocessing Tools
+# Social Media Mining Toolkit - Data Preprocessing Tools
 
-# Utilities available:
+## Utilities available:
 
 **separate_tweet_tsv.py** This utility will separate all tweets in TSV format that contain any of the terms in the given dictionary.
 
