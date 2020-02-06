@@ -51,28 +51,26 @@ Make sure you create a copy of copy_auth.py and call it auth.py, replacing the c
 **NOTE:** If you are using the scraping utility, install the following dependencies.
 
 1. Xvfb
-`
-sudo yum install Xvfb
-`
+` sudo yum install Xvfb `
+
 1. Firefox
 
-sudo yum install firefox
+` sudo yum install firefox `
 
 1. selenium
 
-`
-pip install -U selenium
-`
+` pip install -U selenium `
+
 1. pyvirtualdisplay
-pip install pyvirtualdisplay
+` pip install pyvirtualdisplay `
 
 1. GeckoDriver
 
-sudo yum install jq
+` sudo yum install jq `
+
 and then use the provided utility:
-`
-bash SMMT/data_acquisition/geckoDriverInstall.sh
-`
+
+` bash SMMT/data_acquisition/geckoDriverInstall.sh `
 
 If you still have issues or the Firefox window is popping up through your X11, follow this:
 https://www.tienle.com/2016/09-20/run-selenium-firefox-browser-centos.html

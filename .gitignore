@@ -2,3 +2,4 @@ auth.py
 __pycache__
 LOG.txt
 *.json
+*.log
