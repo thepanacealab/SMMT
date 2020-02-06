@@ -2,7 +2,7 @@
 
 # Utilities available:
 
-** separate_tweet_tsv.py ** This utility will separate all tweets in TSV format that contain any of the terms in the given dictionary.
+**separate_tweet_tsv.py** This utility will separate all tweets in TSV format that contain any of the terms in the given dictionary.
 
 Arguments: 
 
