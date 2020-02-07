@@ -9,7 +9,7 @@ from tweepy import TweepError
 from time import sleep
 
 # CHANGE THIS TO THE USER YOU WANT
-user = 'maria_full'
+user = 'tweets_full'
 
 with open('api_keys.json') as f:
     keys = json.load(f)
@@ -22,7 +22,7 @@ output_file = '{}.json'.format(user)
 output_file_short = '{}_short.json'.format(user)
 compression = zipfile.ZIP_DEFLATED
 
-with open('maria_full.json') as f:
+with open('tweetids.json') as f:
     ids = json.load(f)
 
 print('total ids: {}'.format(len(ids)))

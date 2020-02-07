@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Jun 19 21:22:50 2019
-
-@author: KhanC
-"""
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys

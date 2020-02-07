@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Jun 29 08:42:35 2019
-@author: Cynthia Khan
-"""
-
 #Create a list with all user handles (not user ids)
 user_list = ['realDonaldTrump']
 
