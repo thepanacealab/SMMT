@@ -1,6 +1,6 @@
 # Social Media Mining Toolkit (SMMT) main repository
 
-![SMMT](http://www.jmbanda.com/sMMT_small logo.png)
+![SMMT](http://www.jmbanda.com/sMMT_smalllogo.png)
 
 This work was conceptualized for/and (mostly) carried out while at the [Biomedical Linked Annotation Hackathon 6](http://blah6.linkedannotation.org/) in Tokyo, Japan.
 
