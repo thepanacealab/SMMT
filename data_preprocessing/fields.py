@@ -1,51 +1,3 @@
-# Social Media Mining Toolkit - Data Preprocessing Tools
-
-## Utilities available:
-
-### Separating tweets from an existing file via dictionary keywords
-
-**separate_tweet_tsv.py** This utility will separate all tweets in TSV format that contain any of the terms in the given dictionary.
-
-Arguments: 
-
--d dictionary file
--i source file of tweets
--o output file of tweets
-
-How to run the dictionary based separator:
-```
-python separate_tweet_tsv.py -i TSV_source_file.tsv -d dictionary_file.csv -o outputfile.tsv
-```
-
-### Parsing Tweet JSON files
-
-We provide two different json parsers:
-
-**parse_json_lite.py** If your json file is less than 1GB (and you have enough RAM), this will be the one to use. It reads the full file in memory, so it should not be used for very large files.
-
-**parse_json_heavy.py** This is intended for json files over 1GB and into the terabytes, which have 1 tweet per line. This reads the file line by line, using less memory.
-
-NOTE: By default both parsers will output tab delimited files.
-
-How to run the parsers:
-```
-python parse_json_lite.py FILENAME.json
-```
-
-or
-```
-python parse_json_heavy.py FILENAME.json
-```
-
-#### What fields do you want to extrat from your Tweet json? 
-
-This depends on your application. By default both parsers will extract all fields. But you can limit to the only ones you want by editing the fields.py file and only leaving the ones you want.
-
-Here is a list of available fields. Do not assume that all of your tweets will have all these elements, so don't be alarmed if they have null or empty values in them.
-
-The official Tweet Data Directory can be found here: https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/tweet-object
-
-```
 fields =[
 	'created_at', 
 	'id', 
@@ -220,4 +172,3 @@ fields =[
 	'coordinates.coordinates',
 	'quoted_status.quoted_status_id',
 	'quoted_status.quoted_status_id_str']
-```
