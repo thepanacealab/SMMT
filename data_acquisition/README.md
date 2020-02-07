@@ -1,4 +1,4 @@
-# Social Media Mining Toolkit - Data Annotation and Standardization Tools
+# Social Media Mining Toolkit - Data Acquisition Tools
 
 ## NOTE: For all tools in this folder you need to have Twitter Authentication Keys
 
