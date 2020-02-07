@@ -1,3 +1,20 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#
+#   /$$$$$$  /$$      /$$ /$$      /$$ /$$$$$$$$
+#  /$$__  $$| $$$    /$$$| $$$    /$$$|__  $$__/
+# | $$  \__/| $$$$  /$$$$| $$$$  /$$$$   | $$   
+# |  $$$$$$ | $$ $$/$$ $$| $$ $$/$$ $$   | $$   
+#  \____  $$| $$  $$$| $$| $$  $$$| $$   | $$   
+#  /$$  \ $$| $$\  $ | $$| $$\  $ | $$   | $$   
+# |  $$$$$$/| $$ \/  | $$| $$ \/  | $$   | $$   
+#  \______/ |__/     |__/|__/     |__/   |__/  
+#
+#
+# Developed during Biomedical Hackathon 6 - http://blah6.linkedannotation.org/
+# Authors: Ramya Tekumalla, Javad Asl, Juan M. Banda
+# Contributors: Kevin B. Cohen, Joanthan Lucero
+
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream

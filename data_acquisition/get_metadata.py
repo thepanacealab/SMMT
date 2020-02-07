@@ -1,3 +1,20 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#
+#   /$$$$$$  /$$      /$$ /$$      /$$ /$$$$$$$$
+#  /$$__  $$| $$$    /$$$| $$$    /$$$|__  $$__/
+# | $$  \__/| $$$$  /$$$$| $$$$  /$$$$   | $$   
+# |  $$$$$$ | $$ $$/$$ $$| $$ $$/$$ $$   | $$   
+#  \____  $$| $$  $$$| $$| $$  $$$| $$   | $$   
+#  /$$  \ $$| $$\  $ | $$| $$\  $ | $$   | $$   
+# |  $$$$$$/| $$ \/  | $$| $$ \/  | $$   | $$   
+#  \______/ |__/     |__/|__/     |__/   |__/  
+#
+#
+# Developed during Biomedical Hackathon 6 - http://blah6.linkedannotation.org/
+# Authors: Ramya Tekumalla, Javad Asl, Juan M. Banda
+# Contributors: Kevin B. Cohen, Joanthan Lucero
+
 import tweepy
 import json
 import math
