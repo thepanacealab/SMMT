@@ -1,35 +1,19 @@
 # Social Media Mining Toolkit (SMMT) main repository
 
-![SMMT](http://www.jmbanda.com/sMMT_smalllogo.png)
+The set of tools collected and presented here are designed with the purpose of facilitating the acquisition, preprocessing, and initial exploration of social media data (mostly Twitter for now). This centralized repository dependes on other widely available libraries that need to be installed. 
 
-This work was conceptualized for/and (mostly) carried out while at the [Biomedical Linked Annotation Hackathon 6](http://blah6.linkedannotation.org/) in Tokyo, Japan.
+We separated this toolkit in three categories (each one on an individual folder):
 
-![BLAH](http://www.jmbanda.com/blah6.png)
+1. Data Acquisition Tools: Utilities to gather data from social media sites.
+1. Data Preprocesing Tools: Utilities to parse social media 'raw' data and to separate by terms
+1. Datta Annotation and Standardization Tools: Utilities to make automatic NER annotations on preprocessed tweets, plugins to use popular annotation tools and NER systems.
 
-We are very grateful for the support on this work.
+# Usage
 
-# Proposed functionality of SMMT V1.0
-
-![Architecture](http://www.jmbanda.com/SMMT-v1.png)
-
-## Data Acquisition Tools:
-1. **Twitter hydration tool** - This script will hydrate tweet ID’s provided by others. 
-1. **Twitter gathering tool** - This script will allow users to specify hashtags and capture from the twitter faucet new tweets with the given hashtag.
-1. **Reddit scraping tool** - This script will scrape reddit subgroups that are specified
-
-
-## Data Preprocessing Tools: 
-1. **Twitter JSON extraction tool** - While seemingly trivial, most biomedical researchers do not want to work with JSON objects. This tool will take the fields the researcher wants and output a simple to use CSV file created from the provided data. 
-
-## Data Annotation and Standardization Tools: 
-1. **Spacy dictionary-based annotation pipeline** This is the tool that will require the most work during the hackathon. This pipeline will be available as a service as well, with the user providing their dictionaries and feeding data directly.  
-1. **Dictionary generation tool** This tool will transform ontologies or provided dictionary files into spacy compliant dictionaries to use with the previous pipeline.
-1. **Manual annotation hooks to tools like brat annotation tools** 
-
-# Twitter Keys
-**This is a very important step, if you do not have any Twitter API keys, none of the software that uses Twitter API will work without it**
-
-Make sure you create a copy of copy_auth.py and call it auth.py, replacing the corresponding text inside with the proper keys.
+1. Install dependencies (below)
+1. Clone repository
+1. Make sure you have your Twitter API keys handy if you are gathering any Twitter Data
+1. Each tool and their usage is described on the README file on each category of tools folder.
 
 # Dependencies and versions used
 
@@ -77,7 +61,32 @@ and then use the provided utility:
 If you still have issues or the Firefox window is popping up through your X11, follow this:
 https://www.tienle.com/2016/09-20/run-selenium-firefox-browser-centos.html
 
-# Usage
+# Twitter Keys
+**This is a very important step, if you do not have any Twitter API keys, none of the software that uses Twitter API will work without it**
 
-1. Clone repository
-1. Each tool and their usage is described on their individual pages 
+# Social Media Mining Toolkit (SMMT) Extra Information
+
+![SMMT](http://www.jmbanda.com/sMMT_smalllogo.png)
+
+## Data Acquisition Tools:
+1. **Twitter hydration tool** - This script will hydrate tweet ID’s provided by others. 
+1. **Twitter gathering tool** - This script will allow users to specify hashtags and capture from the twitter faucet new tweets with the given hashtag.
+
+## Data Preprocessing Tools: 
+1. **Twitter JSON extraction tool** - While seemingly trivial, most biomedical researchers do not want to work with JSON objects. This tool will take the fields the researcher wants and output a simple to use CSV file created from the provided data. 
+
+## Data Annotation and Standardization Tools: 
+1. **Spacy dictionary-based annotation pipeline** This is the tool that will require the most work during the hackathon. This pipeline will be available as a service as well, with the user providing their dictionaries and feeding data directly.  
+1. **Dictionary generation tool** This tool will transform ontologies or provided dictionary files into spacy compliant dictionaries to use with the previous pipeline.
+1. **Manual annotation hooks to tools like brat annotation tools** 
+
+
+This work was conceptualized for/and (mostly) carried out while at the [Biomedical Linked Annotation Hackathon 6](http://blah6.linkedannotation.org/) in Tokyo, Japan.
+
+![BLAH](http://www.jmbanda.com/blah6.png)
+
+We are very grateful for the support on this work.
+
+# Proposed functionality of SMMT V1.0
+
+![Architecture](http://www.jmbanda.com/SMMT-v1.png)
