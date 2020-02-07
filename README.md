@@ -33,48 +33,39 @@ Make sure you create a copy of copy_auth.py and call it auth.py, replacing the c
 
 1. Python 3+
 
-1. Spacy v2.2 - https://spacy.io/usage
+1. [Spacy v2.2](https://spacy.io/usage)
 ``` 
 pip install spacy 
 python -m spacy download en
 python -m spacy download en_core_web_sm
 ```
-1. Twarc - https://github.com/DocNow/twarc
-
+1. [Twarc](https://github.com/DocNow/twarc)
 ` pip install twarc `
 
-1. Tweepy - v3.8.0 - http://docs.tweepy.org/en/latest/
-
+1. [Tweepy v3.8.0](http://docs.tweepy.org/en/latest/)
 ` pip install tweepy `
 
-1. argparse - v3.2 - https://docs.python.org/3/library/argparse.html
-
+1. [argparse - v3.2](https://docs.python.org/3/library/argparse.html)
 ` pip install argparse `
 
-1. xtract - v0.1a3 - https://pypi.org/project/xtract/
-
+1. [xtract - v0.1a3](https://pypi.org/project/xtract/)
 ` pip install xtract `
 
 **NOTE:** If you are using the scraping utility, install the following dependencies. These dependencies are needed for the headless browsing automation tasks (no need to have a screen open for them). Configuration of these items is very finicky but there is plenty of documentation online.
 
-1. Xvfb - https://linux.die.net/man/1/xvfb
-
+1. [Xvf](https://linux.die.net/man/1/xvfb)
 ` sudo yum install Xvfb `
 
-1. Firefox - https://www.mozilla.org/en-US/firefox/linux/
-
+1. [Firefox](https://www.mozilla.org/en-US/firefox/linux/)
 ` sudo yum install firefox `
 
-1. selenium
-
+1. [selenium](https://selenium.dev/)
 ` pip install -U selenium `
 
-1. pyvirtualdisplay
-
+1. [pyvirtualdisplay - v0.25](https://pypi.org/project/PyVirtualDisplay/)
 ` pip install pyvirtualdisplay `
 
-1. GeckoDriver
-
+1. [GeckoDriver - v0.26.0](https://github.com/mozilla/geckodriver/releases)
 ` sudo yum install jq `
 
 and then use the provided utility:
@@ -89,12 +80,3 @@ https://www.tienle.com/2016/09-20/run-selenium-firefox-browser-centos.html
 
 1. Clone repository
 1. Each tool and their usage is described on their individual pages 
-
-# Everything below is a work in progress
-
-Here is the documentation for the Social Media Mining
-
-https://docs.google.com/document/d/1w49tIhvqxKTax47IwfKgaPSbnLImmSlPFozKrz_Efuw/edit?usp=sharing  . This is a draft version.
-
-Related Repositories:
-https://github.com/thepanacealab/InternetArchive-Pharmacovigilance-Tweets
