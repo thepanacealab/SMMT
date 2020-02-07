@@ -1,5 +1,7 @@
 # Social Media Mining Toolkit (SMMT) main repository
 
+![SMMT](http://www.jmbanda.com/sMMT_small logo.png)
+
 This work was conceptualized for/and (mostly) carried out while at the [Biomedical Linked Annotation Hackathon 6](http://blah6.linkedannotation.org/) in Tokyo, Japan.
 
 ![BLAH](http://www.jmbanda.com/blah6.png)
@@ -74,7 +76,6 @@ and then use the provided utility:
 
 If you still have issues or the Firefox window is popping up through your X11, follow this:
 https://www.tienle.com/2016/09-20/run-selenium-firefox-browser-centos.html
-
 
 # Usage
 
