@@ -10,13 +10,13 @@
 Series of json files with the keyword you searched as a prefix.
 
 
-IMPORTAT: This tool needs your keys to be placed on a file called auth.py. We provide a template called copy_auth.py that you need to fill in with your API keys and rename to auth.py.
+_IMPORTAT: This tool needs your keys to be placed on a file called auth.py. We provide a template called copy_auth.py that you need to fill in with your API keys and rename to auth.py._
 
 ## Scraping Tool:
 
 **scrape.py** This utility allows users to pass a list of Twitter userNames/handles, a starting date, and an ending date for scraping. You can pass these parameters on the _userConfig.py_ file. You can pass one or many users, making sure each one has a corresponding start and end date. The file is structured as a Python list were you edit the individual elements. The provided _userConfig.py_ file is an example of how to gather the Tweets of Donald Trump for a give particular date. The intended purpose of this tool is to gather historical tweets in order for a time range that are otherwise not available via the Twitter API. 
 
-NOTE: You need to have your Twitter API keys on a file named: api_keys.json. We provide a template under copy_api_keys.sample, you should edit the file with the proper keys, save it, and rename it to api_keys.json. 
+_NOTE: You need to have your Twitter API keys on a file named: api_keys.json. We provide a template under copy_api_keys.sample, you should edit the file with the proper keys, save it, and rename it to api_keys.json._
 
 ### Output:
 A single file called tweetsids.json that contains the tweet identifiers for all the scrapped tweets. Note that you still need to 'hydrate' these identifiers to get the full proper json object. This file can either be hydrated with Twarc or use the get_metadata.py utility for this purpose.
