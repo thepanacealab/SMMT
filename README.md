@@ -25,7 +25,7 @@ We are very grateful for the support on this work.
 1. **Manual annotation hooks to tools like brat annotation tools** 
 
 # Twitter Keys
-**This is a very important step, if you do not have any Twitter API keys, none of the software that uses Twitter will work without it**
+**This is a very important step, if you do not have any Twitter API keys, none of the software that uses Twitter API will work without it**
 
 Make sure you create a copy of copy_auth.py and call it auth.py, replacing the corresponding text inside with the proper keys.
 
@@ -33,39 +33,48 @@ Make sure you create a copy of copy_auth.py and call it auth.py, replacing the c
 
 1. Python 3+
 
-1. Spacy
+1. Spacy v2.2 - https://spacy.io/usage
 ``` 
 pip install spacy 
 python -m spacy download en
 python -m spacy download en_core_web_sm
 ```
-1. Twarc
+1. Twarc - https://github.com/DocNow/twarc
+
 ` pip install twarc `
 
-1. Tweepy
+1. Tweepy - v3.8.0 - http://docs.tweepy.org/en/latest/
+
 ` pip install tweepy `
 
-1. argparse
+1. argparse - v3.2 - https://docs.python.org/3/library/argparse.html
+
 ` pip install argparse `
 
-1. xtract
+1. xtract - v0.1a3 - https://pypi.org/project/xtract/
+
 ` pip install xtract `
 
-**NOTE:** If you are using the scraping utility, install the following dependencies.
+**NOTE:** If you are using the scraping utility, install the following dependencies. These dependencies are needed for the headless browsing automation tasks (no need to have a screen open for them). Configuration of these items is very finicky but there is plenty of documentation online.
 
-1. Xvfb
+1. Xvfb - https://linux.die.net/man/1/xvfb
+
 ` sudo yum install Xvfb `
 
-1. Firefox
+1. Firefox - https://www.mozilla.org/en-US/firefox/linux/
+
 ` sudo yum install firefox `
 
 1. selenium
+
 ` pip install -U selenium `
 
 1. pyvirtualdisplay
+
 ` pip install pyvirtualdisplay `
 
 1. GeckoDriver
+
 ` sudo yum install jq `
 
 and then use the provided utility:

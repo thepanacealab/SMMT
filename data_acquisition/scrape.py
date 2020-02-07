@@ -67,8 +67,22 @@ for user in users:
     end = datetime.datetime(int(eYear), int(eMonth), int(eDay))  # year, month, day
     
     days = (end - start).days + 1
-    id_selector = '.time a.tweet-timestamp'
-    tweet_selector = 'li.js-stream-item'
+    #id_selector = '.time a.tweet-timestamp'
+    #tweet_selector = 'li.js-stream-item'
+    #This Works
+    #tweet_selector = 'div.css-1dbjc4n.r-my5ep6.r-qklmqi.r-1adg3ll'
+    tweet_selector = 'div.css-1dbjc4n.r-1d09ksm.r-18u37iz.r-1wbh5a2'
+    #Tweets with threads get skipped, so here we get them
+    tweet_selector_thread = 'article.css-1dbjc4n.r-1loqt21.r-1udh08x.r-o7ynqc.r-1j63xyz'
+    #-This Works
+    #tweet_selector = 'article.css-1dbjc4n.r-1loqt21.r-1udh08x.r-o7ynqc.r-1j63xyz'
+    #tweet_selector = 'div.css-1dbjc4n.r-18u37iz.r-thb0q2'
+    #tweet_selector = 'Timeline: Search timeline'
+    #tweet_selector = 'div.css-1dbjc4n r-1j3t67a'
+    #id_selector = 'div.css-4rbku5 css-18t94o4 css-901oao.r-1re7ezh.r-1loqt21.r-1q142lx.r-1qd0xha.r-a023e6.r-16dba41.r-ad9z0x.r-bcqeeo.r-3s2u2q.r-qvutc0'
+    #id_selector='div.css-1dbjc4n.r-1d09ksm.r-18u37iz.r-1wbh5a2'
+    #id_selector='div.css-1dbjc4n.r-1d09ksm.r-18u37iz.r-1wbh5a2'
+    id_selector='a.css-4rbku5.css-18t94o4.css-901oao.r-1re7ezh.r-1loqt21.r-1q142lx.r-1qd0xha.r-a023e6.r-16dba41.r-ad9z0x.r-bcqeeo.r-3s2u2q.r-qvutc0'
     user = user.lower()
     
     for day in range(days):
@@ -82,6 +96,14 @@ for user in users:
     
         try:
             found_tweets = driver.find_elements_by_css_selector(tweet_selector)
+            tweetsNormal =len(found_tweets)
+            try:
+                found_tweets2 = driver.find_elements_by_css_selector(tweet_selector_thread)
+                tweetsThread = len(found_tweets2)
+            except NoSuchElementException:
+                tweetsThread = 0
+            #print("Total tweets found: " + str(tweetsNormal + tweetsThread))
+
             increment = 10
     
             while len(found_tweets) >= increment:
@@ -90,16 +112,33 @@ for user in users:
                 sleep(delay)
                 found_tweets = driver.find_elements_by_css_selector(tweet_selector)
                 increment += 10
-    
-            print('{} tweets found, {} total'.format(len(found_tweets), len(ids)))
-    
-            for tweet in found_tweets:
+                tweetsNormal = len(found_tweets)
+                try:
+                    found_tweets2 = driver.find_elements_by_css_selector(tweet_selector_thread)
+                    tweetsThread = len(found_tweets2)
+                except NoSuchElementException:
+                    tweetsThread = 0
+            print("Total tweets found: " + str(tweetsNormal + tweetsThread))
+            #print('{} tweets found, {} total'.format(len(found_tweets), len(ids)))
+            #print("Selector found " + str(len(found_tweets)) + " tweets")
+            for tweet in found_tweets: 
+                #print(tweet.find_element_by_css_selector(id_selector))
+                #print(tweet.find_element_by_css_selector(id_selector).get_attribute('href'))
                 try:
                     id = tweet.find_element_by_css_selector(id_selector).get_attribute('href').split('/')[-1]
                     ids.append(id)
                 except StaleElementReferenceException as e:
                     print('lost element reference', tweet)
-    
+            for tweet in found_tweets2:
+                #print(tweet.find_element_by_css_selector(id_selector))
+                #print(tweet.find_element_by_css_selector(id_selector).get_attribute('href'))
+                try:
+                    id = tweet.find_element_by_css_selector(id_selector).get_attribute('href').split('/')[-1]
+                    ids.append(id)
+                except StaleElementReferenceException as e:
+                    print('lost element reference', tweet)
+            print('{} tweets found, {} total'.format(len(found_tweets), len(ids)))
+
         except NoSuchElementException:
             print('no tweets on this day')
     
