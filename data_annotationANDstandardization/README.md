@@ -47,10 +47,10 @@ python separate_tweets.py -i inputfile.json -d dictionary_file.tsv -o outputfile
 - The following image is an example of the visualization.
 
 Example with 2 annotations in a single tweet
-![TextAE and Pub Annotation Example](https://github.com/thepanacealab/SMMT/tree/master/data_annotationANDstandardization/2termsAE.PNG)
+![TextAE and Pub Annotation Example](https://github.com/thepanacealab/SMMT/blob/master/data_annotationANDstandardization/2termsAE.PNG)
 
 Example with 1 annotation in a single tweet
-![TextAE and Pub Annotation Example](https://github.com/thepanacealab/SMMT/tree/master/data_annotationANDstandardization/singletermAE.PNG)
+![TextAE and Pub Annotation Example](https://github.com/thepanacealab/SMMT/blob/master/data_annotationANDstandardization/singletermAE.PNG)
 
 
 | Arguments     | Description | Required |
