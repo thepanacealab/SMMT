@@ -32,32 +32,30 @@ How to run separate_tweets.py for obtaining spanish tweets:
 python separate_tweets.py -i inputfile.json -d dictionary_file.tsv -o outputfile.tsv -l es -v y
 ```
 
-**SMMT_NER_basic.py** This utility will annotate tweets in a given TSV file (TSV_source.tsv) with format tweetID tab Text, with a given dictionary dictionary_file.txt - with format termID TAB termString. The output can be obtained in 3 different formats. 
+**SMMT_NER_basic.py** This utility will annotate tweets in a given TSV file (TSV_source.tsv) with format tweetID tab Text, with a given dictionary dictionary_file.txt - with format termID TAB termString. The output can be obtained in 4 different formats. 
 
-**Format compatible with Brat tool (https://brat.nlplab.org/manual.html)**
+**  Format compatible with Brat tool (https://brat.nlplab.org/manual.html) **
  - The output file consists of Textannotation TAB TermId TAB startSpan TAB endSpan. 
  - The annotated output file must be saved with an extension ".ann".
  - To use the Brat Visualization tool, annotation file and Text file (file with only one tweet Text per line) must be uploaded.
 
-**Format compatible with TextAE and PubAnnotation (https://textae.pubannotation.org/)**
-- The output file consists of one Json object per line. 
-- Each line of the output file must be considered as a separate document.  
-- Open the output file, copy the first line and save it as a text file "anno1.txt"
-- Open TextAE editor and import the anno1.txt for visualization. 
+** Format compatible with TextAE and PubAnnotation (https://textae.pubannotation.org/) **
+- The output file consists of Json object.
+- To use the output file, open the text editor on TextAE and import the output file. 
 - The following image is an example of the visualization.
 
-Example with 2 annotations in a single tweet
-![TextAE and Pub Annotation Example](https://github.com/thepanacealab/SMMT/blob/master/data_annotationANDstandardization/2termsAE.PNG)
+** Format compatible with Colab notebook (https://colab.research.google.com/drive/1c_5JBJ7diMDeUVVxZG95_25bZ-u8ZIDZ) **
+- The output file consists of Tweet Text and annotated Label.
+- To use the output file, upload the output file on the colab notebook and keep running the notebook.
 
-Example with 1 annotation in a single tweet
-![TextAE and Pub Annotation Example](https://github.com/thepanacealab/SMMT/blob/master/data_annotationANDstandardization/singletermAE.PNG)
+![TextAE and Pub Annotation Example](textAE.png)
 
 
 | Arguments     | Description | Required |
 | ------------- | ------------- | ------------- |
 | i  | input text file name   |   | Yes
 | o  | output file name  |  | Yes | 
-| f | format of the output <ul><li>-b : compatible with brat tool </li><li>-t : compatible with TextAE and PubAnnotation</li> <li>-g : generic format (default) with the format - tweetID TAB termID TAB startSpan TAB endSpan. </li></ul> | No. Default is set to generic |
+| f | format of the output <ul><li>-b : compatible with brat tool </li><li>-t : compatible with TextAE and PubAnnotation</li> <li>-g : generic format (default) with the format - tweetID TAB termID TAB startSpan TAB endSpan. </li> <li>-c - format compatible with Colab notebook </li></ul> | No. Default is set to generic |
 
 
 How to run the dictionary based annotator:
@@ -65,4 +63,10 @@ How to run the dictionary based annotator:
 python SMMT_NER_basic.py -i TSV_source_file.tsv -d dictionary_file.csv -o outputfile.ann -f b
 
 python SMMT_NER_basic.py -i TSV_source_file.tsv -d dictionary_file.csv -o outputfile.json -f t
+
+python SMMT_NER_basic.py -i TSV_source_file.tsv -d dictionary_file.csv -o outputfile.json -f c
+
+python SMMT_NER_basic.py -i TSV_source_file.tsv -d dictionary_file.csv -o outputfile.json -f g
+
+
 ```

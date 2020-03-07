@@ -42,11 +42,17 @@ def genericFormat(ID,description,desc,i,csv_output):
 		for ent in desc.ents:
 			csv_output.writerow([ID,ent.label_, ent.start_char, ent.end_char])
 
-def bratFormat(desc,fO,i):
+def bratFormat(description,desc,fO,i):
 	#print(len(desc.ents))
 	if len(desc.ents) > 0:
 		for ent in desc.ents:
 			fO.write("T" + str(i) + "\t" + str(ent.label_) + "\t" + str(ent.start_char) + "\t" + str(ent.end_char) + "\t" + str(ent.text) + "\n")
+
+def colabFormat(description,desc,fO,i):
+	#print(len(desc.ents))
+	if len(desc.ents) > 0:
+		for ent in desc.ents:
+			fO.write(str(description) + "\t" + str(ent.text) + "\n")
 
 
 def textAnFormat(description,desc,fO):
@@ -72,7 +78,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-d', help="Dictionary file with extension", required=True)
 parser.add_argument('-i',  help="Input file name with extension", required=True)
 parser.add_argument('-o',  help="Output file name with extension", required=True)
-parser.add_argument('-f',  help="format pf the annotation", default = "g")
+parser.add_argument('-f',  help="format f the annotation", default = "g")
+
+
 
 args = parser.parse_args()
 dictionary_filename = args.d
@@ -82,7 +90,7 @@ format_given = args.f
 #print(format_given)
 
 temp = open(dictionary_filename)
-dictionary_file = csv.reader(temp, delimiter='\t')
+dictionary_file = csv.reader(temp, delimiter=',')
 patterns = []
 i = 0
 for product in dictionary_file:
@@ -108,7 +116,7 @@ completeDescription = ""
 if (format_given is "g"):
 	f_output = open(output_file, 'w', newline='')
 	csv_output = csv.writer(f_output, delimiter='\t')
-if (format_given is "t" or "b"):
+if (format_given is "t" or "b" or "c"):
 	fO = open(output_file, "w", encoding="utf-8")
 i = 0
 completeDescription = ""
@@ -119,18 +127,22 @@ for product in products:
 	ID = product[0]
 	description = product[1].lower()
 	print(description)
-	#completeDescription += (description.replace("\n", "").replace("\"", "") + "\n")
-	#print(completeDescription)
+
 	if (format_given is "g"):
 		desc = nlp(description)
 		extended_docs[ID] = desc	
 		genericFormat(ID,description,desc,i,csv_output)
+
+	if (format_given is "c"):
+		desc = nlp(description)
+		extended_docs[ID] = desc	
+		colabFormat(description,desc,fO,i)
 	
 
 	if (format_given is "b"):
 		desc = nlp(description)
 		extended_docs[ID] = desc	
-		bratFormat(desc,fO,i)
+		bratFormat(description,desc,fO,i)
 
 
 	if (format_given is "t"):
@@ -140,7 +152,6 @@ for product in products:
 	i = i+1
 
 
-
 products_raw.close()
 
 #Dkeys = tagged_docs(extended_docs,'description')
@@ -148,7 +159,8 @@ products_raw.close()
 
 
 del extended_docs
-if (format_given is "t" or "b"):
+if (format_given is "t" or "b" or "c"):
 	fO.close()
 else:
 	f_output.close()
+
