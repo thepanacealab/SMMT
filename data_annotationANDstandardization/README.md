@@ -27,7 +27,7 @@ Usage : python create_dictionary.py -i uberon.tsv -o newuberon_dict.tsv
 | v | verbose – which gives all details of the program – total no of tweets processed, no of tweets separated, counts for each term saved in a csv file, total time taken to run the program | No |
 | l | language | default set to English, but can take other languages “en” , “es”. | No |
 
-How to run separate_tweets.py for obtaining spanish tweets:
+How to run separate_tweets.py for obtaining Spanish tweets:
 ```
 python separate_tweets.py -i inputfile.json -d dictionary_file.tsv -o outputfile.tsv -l es -v y
 ```
@@ -44,10 +44,6 @@ python separate_tweets.py -i inputfile.json -d dictionary_file.tsv -o outputfile
 - To use the output file, open the text editor on TextAE and import the output file. 
 - The following image is an example of the visualization.
 
-** Format compatible with Colab notebook (https://colab.research.google.com/drive/1c_5JBJ7diMDeUVVxZG95_25bZ-u8ZIDZ) **
-- The output file consists of Tweet Text and annotated Label.
-- To use the output file, upload the output file on the colab notebook and keep running the notebook.
-
 ![TextAE and Pub Annotation Example](textAE.png)
 
 
@@ -55,7 +51,7 @@ python separate_tweets.py -i inputfile.json -d dictionary_file.tsv -o outputfile
 | ------------- | ------------- | ------------- |
 | i  | input text file name   |   | Yes
 | o  | output file name  |  | Yes | 
-| f | format of the output <ul><li>-b : compatible with brat tool </li><li>-t : compatible with TextAE and PubAnnotation</li> <li>-g : generic format (default) with the format - tweetID TAB termID TAB startSpan TAB endSpan. </li> <li>-c - format compatible with Colab notebook </li></ul> | No. Default is set to generic |
+| f | format of the output <ul><li>-b : compatible with brat tool </li><li>-t : compatible with TextAE and PubAnnotation</li> <li>-g : generic format (default) with the format - tweetID TAB termID TAB startSpan TAB endSpan. </li> </ul> | No. Default is set to generic |
 
 
 How to run the dictionary based annotator:
@@ -63,8 +59,6 @@ How to run the dictionary based annotator:
 python SMMT_NER_basic.py -i TSV_source_file.tsv -d dictionary_file.csv -o outputfile.ann -f b
 
 python SMMT_NER_basic.py -i TSV_source_file.tsv -d dictionary_file.csv -o outputfile.json -f t
-
-python SMMT_NER_basic.py -i TSV_source_file.tsv -d dictionary_file.csv -o outputfile.json -f c
 
 python SMMT_NER_basic.py -i TSV_source_file.tsv -d dictionary_file.csv -o outputfile.json -f g
 

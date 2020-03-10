@@ -48,12 +48,6 @@ def bratFormat(description,desc,fO,i):
 		for ent in desc.ents:
 			fO.write("T" + str(i) + "\t" + str(ent.label_) + "\t" + str(ent.start_char) + "\t" + str(ent.end_char) + "\t" + str(ent.text) + "\n")
 
-def colabFormat(description,desc,fO,i):
-	#print(len(desc.ents))
-	if len(desc.ents) > 0:
-		for ent in desc.ents:
-			fO.write(str(description) + "\t" + str(ent.text) + "\n")
-
 
 def textAnFormat(description,desc,fO):
 		text = "text"
@@ -133,12 +127,6 @@ for product in products:
 		extended_docs[ID] = desc	
 		genericFormat(ID,description,desc,i,csv_output)
 
-	if (format_given is "c"):
-		desc = nlp(description)
-		extended_docs[ID] = desc	
-		colabFormat(description,desc,fO,i)
-	
-
 	if (format_given is "b"):
 		desc = nlp(description)
 		extended_docs[ID] = desc	
@@ -159,7 +147,7 @@ products_raw.close()
 
 
 del extended_docs
-if (format_given is "t" or "b" or "c"):
+if (format_given is "t" or "b"):
 	fO.close()
 else:
 	f_output.close()
