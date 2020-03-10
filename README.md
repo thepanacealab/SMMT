@@ -1,12 +1,12 @@
 # Social Media Mining Toolkit (SMMT) main repository
 
-The set of tools collected and presented here are designed with the purpose of facilitating the acquisition, preprocessing, and initial exploration of social media data (mostly Twitter for now). This centralized repository dependes on other widely available libraries that need to be installed. 
+The set of tools collected and presented here are designed with the purpose of facilitating the acquisition, preprocessing, and initial exploration of social media data (mostly Twitter for now). This centralized repository depends on other widely available libraries that need to be installed. 
 
 We separated this toolkit in three categories (each one on an individual folder):
 
 1. Data Acquisition Tools: Utilities to gather data from social media sites.
-1. Data Preprocesing Tools: Utilities to parse social media 'raw' data and to separate by terms
-1. Datta Annotation and Standardization Tools: Utilities to make automatic NER annotations on preprocessed tweets, plugins to use popular annotation tools and NER systems.
+1. Data Preprocessing  Tools: Utilities to parse social media 'raw' data and to separate by terms
+1. Data Annotation and Standardization Tools: Utilities to make automatic NER annotations on preprocessed tweets, plugins to use popular annotation tools and NER systems.
 
 # Usage
 

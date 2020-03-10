@@ -1,6 +1,6 @@
 # Social Media Mining Toolkit - Data Acquisition Tools
 
-## NOTE: For all tools in this folder you need to have Twitter Authentication Keys
+## NOTE: For all tools in this folder, you need to have Twitter Authentication Keys
 
 ## Utilities available:
 
@@ -35,7 +35,7 @@ A single file called tweetsids.json that contains the tweet identifiers for all 
 |Arguments|Description|Required |
 | ------------- | ------------- | ------------- |
 |i|input text file name|A text file having one tweet id per line|Yes |
-|o|output file name|4 output files will be created using the fiven output file name|Yes |
+|o|output file name|4 output files will be created using the given output file name|Yes |
 
 
 ```

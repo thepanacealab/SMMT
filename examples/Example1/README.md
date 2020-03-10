@@ -2,7 +2,7 @@
 
 ## Example 1
 
-### Search for specific terms (donald trump, coronavirus, cricket) using the data acquisition tools. Preprocess the data using the data preprocessing tools. Annotate the tweets using the Data_annotation tools and finally classify the tweets. 
+### Search for specific terms (donald trump, coronavirus, cricket) using the data acquisition tools. Preprocess the data using the data preprocessing tools. Classify the preprocessed tweets using a classifier. 
 
 1. Set up all the requirements required for Social Media Mining Toolkit (https://github.com/thepanacealab/SMMT)
 2. You will need Twitter API keys for using any of the data acquisition tools. Please apply for a twitter developer account and obtain keys. Place the keys in auth.py using the format of copy_api_keys.sample.
