@@ -36,8 +36,9 @@ Usage : python create_dictionary.py -i uberon.tsv -o newuberon_dict.tsv
 
 | Arguments     | Description | Required |
 | ------------- | ------------- | ------------- |
-| i  | input text file name   |   | Yes
-| o  | output file name  |  | Yes | 
+| i  | input file name | Yes |
+| o  | output file name   | Yes | 
+| d | dictionary file name | Yes |
 | f | format of the output <ul><li>-b : compatible with brat tool </li><li>-t : compatible with TextAE and PubAnnotation</li> <li>-g : generic format (default) with the format - tweetID TAB termID TAB startSpan TAB endSpan. </li> </ul> | No. Default is set to generic |
 
 
