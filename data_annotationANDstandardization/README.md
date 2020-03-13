@@ -25,9 +25,13 @@ Usage : python create_dictionary.py -i uberon.tsv -o newuberon_dict.tsv
 ** Format compatible with TextAE and PubAnnotation (https://textae.pubannotation.org/) **
 - The output file consists of Json object.
 - To use the output file, open the text editor on TextAE and import the output file. 
-- The following image is an example of the visualization.
+- The following image is an example of visualization with a single term annotation.
 
-![TextAE and Pub Annotation Example](textAE.PNG)
+![TextAE and Pub Annotation Example 1](singletermAE.PNG)
+
+- The following image is an example of visualization of annotation with two terms.
+
+![TextAE and Pub Annotation Example 2](2termsAE.PNG)
 
 
 | Arguments     | Description | Required |

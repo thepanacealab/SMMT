@@ -4,7 +4,7 @@
 
 ### Separating tweets from an existing file via dictionary keywords
 
-**separate_tweet_tsv.py** This utility will separate all tweets in TSV format that contain any of the terms in the given dictionary. It input for this utility is a TSV file with the format UserID TAB TweetID TAB TweetText TAB Date. The output of this utility is a tsv file with the same format as the input file.
+**separate_tweet_tsv.py** This utility separates all tweets in TSV format that contain any of the terms in the given dictionary. The input for this utility is a TSV file with the format UserID TAB TweetID TAB TweetText TAB Date. The output of this utility is a tsv file with the same format as the input file.
 
 Arguments: 
 
