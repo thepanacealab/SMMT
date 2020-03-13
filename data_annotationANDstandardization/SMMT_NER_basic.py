@@ -105,7 +105,6 @@ nlp.add_pipe(ruler)
 products_raw = open(input_file)
 products = csv.reader(products_raw,delimiter='\t')
 extended_docs={}
-completeDescription = ""
 
 if (format_given is "g"):
 	f_output = open(output_file, 'w', newline='')
@@ -113,7 +112,7 @@ if (format_given is "g"):
 if (format_given is "t" or "b" or "c"):
 	fO = open(output_file, "w", encoding="utf-8")
 i = 0
-completeDescription = ""
+
 for product in products:
 	if i ==0:
 		i = i +1

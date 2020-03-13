@@ -15,23 +15,6 @@
 Usage : python create_dictionary.py -i uberon.tsv -o newuberon_dict.tsv
 ```
 
-
-**separate_tweets.py** This utility separates Tweet json objects from a file of twitter json objects (obtained by hydrating tweets) using a dictionary. The input for this utility is a json file with one json object per line. This program extracts the tweet text from the json object and uses the dictionary to identify the presence of dictionary. If there is a match, the tweet object is written to the output file. The output file consists of all such separated Tweet Json objects.
-
-| Arguments     | Description | Required |
-| ------------- | ------------- | ------------- |
-| i  | input text file name   |   | Yes
-| o  | output file name  |  | Yes |
-| d | dictionary file name | Yes |
-| t | no of threads (default is set to 1) | No |
-| v | verbose – which gives all details of the program – total no of tweets processed, no of tweets separated, counts for each term saved in a csv file, total time taken to run the program | No |
-| l | language | default set to English, but can take other languages “en” , “es”. | No |
-
-How to run separate_tweets.py for obtaining Spanish tweets:
-```
-python separate_tweets.py -i inputfile.json -d dictionary_file.tsv -o outputfile.tsv -l es -v y
-```
-
 **SMMT_NER_basic.py** This utility will annotate tweets in a given TSV file (TSV_source.tsv) with format tweetID tab Text, with a given dictionary dictionary_file.txt - with format termID TAB termString. The output can be obtained in 4 different formats. 
 
 **  Format compatible with Brat tool (https://brat.nlplab.org/manual.html) **
@@ -44,7 +27,7 @@ python separate_tweets.py -i inputfile.json -d dictionary_file.tsv -o outputfile
 - To use the output file, open the text editor on TextAE and import the output file. 
 - The following image is an example of the visualization.
 
-![TextAE and Pub Annotation Example](textAE.png)
+![TextAE and Pub Annotation Example](textAE.PNG)
 
 
 | Arguments     | Description | Required |
