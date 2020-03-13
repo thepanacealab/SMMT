@@ -6,11 +6,11 @@
 
 **separate_tweet_tsv.py** This utility separates all tweets in TSV format that contain any of the terms in the given dictionary. The input for this utility is a TSV file with the format UserID TAB TweetID TAB TweetText TAB Date. The output of this utility is a tsv file with the same format as the input file.
 
-Arguments: 
-
--d dictionary file
--i source file of tweets
--o output file of tweets
+| Arguments     | Description | Required |
+| ------------- | ------------- | ------------- |
+| i  | input source file name   |   Yes |
+| o  | output file name    | Yes |
+| d | dictionary file name | Yes |
 
 How to run the dictionary based separator:
 ```
@@ -21,8 +21,8 @@ python separate_tweet_tsv.py -i TSV_source_file.tsv -d dictionary_file.csv -o ou
 
 | Arguments     | Description | Required |
 | ------------- | ------------- | ------------- |
-| i  | input text file name   |   | Yes
-| o  | output file name  |  | Yes |
+| i  | input source file name   | Yes |
+| o  | output file name  |   Yes |
 | d | dictionary file name | Yes |
 | t | no of threads (default is set to 1) | No |
 | v | verbose – which gives all details of the program – total no of tweets processed, no of tweets separated, counts for each term saved in a csv file, total time taken to run the program | No |
@@ -30,7 +30,7 @@ python separate_tweet_tsv.py -i TSV_source_file.tsv -d dictionary_file.csv -o ou
 
 How to run separate_tweets.py for obtaining Spanish tweets:
 ```
-python separate_tweets.py -i inputfile.json -d dictionary_file.tsv -o outputfile.tsv -l es -v y
+python separate_tweets.py -i inputfile.json -d dictionary_file.tsv -o outputfile.json -l es -v y
 ```
 
 ### Parsing Tweet JSON files
