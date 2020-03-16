@@ -34,7 +34,7 @@ def ProcessFilesInThread(filesList, nlp, matcher, fO,lng):
                     tweet = json.loads(line)
                     if 'lang' in tweet and str(tweet["lang"]) == lng  and 'retweeted_status' not in tweet:
                         try:
-                            tweetText = str(tweet["full_text"]).lower() or str(tweet["text"]).lower()
+                            tweetText = str(tweet["text"]).lower()
                         except:
                             tweetText = 'NULL'
                         doc = nlp(tweetText)
@@ -62,7 +62,7 @@ def drugcount(filename, nlp, matcher):
            if line.strip().startswith('{'):
                outputLineCount = outputLineCount + 1
                tweet = json.loads(line)
-               tweetText = str(tweet["full_text"]).lower() or str(tweet["text"]).lower()
+               tweetText = str(tweet["text"]).lower()
                doc = nlp(tweetText)
                matches = matcher(doc)                
                for match_id, start, end in matches:

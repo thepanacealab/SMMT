@@ -4,17 +4,33 @@
 
 ### Separating tweets from an existing file via dictionary keywords
 
-**separate_tweet_tsv.py** This utility will separate all tweets in TSV format that contain any of the terms in the given dictionary.
+**separate_tweet_tsv.py** This utility separates all tweets in TSV format that contain any of the terms in the given dictionary. The input for this utility is a TSV file with the format UserID TAB TweetID TAB TweetText TAB Date. The output of this utility is a tsv file with the same format as the input file.
 
-Arguments: 
-
--d dictionary file
--i source file of tweets
--o output file of tweets
+| Arguments     | Description | Required |
+| ------------- | ------------- | ------------- |
+| i  | input source file name   |   Yes |
+| o  | output file name    | Yes |
+| d | dictionary file name | Yes |
 
 How to run the dictionary based separator:
 ```
 python separate_tweet_tsv.py -i TSV_source_file.tsv -d dictionary_file.csv -o outputfile.tsv
+```
+
+**separate_tweets.py** This utility separates Tweet json objects from a file of twitter json objects (obtained by hydrating tweets) using a dictionary. The input for this utility is a json file with one json object per line. This program extracts the tweet text from the json object and uses the dictionary to identify the presence of dictionary. If there is a match, the tweet object is written to the output file. The output file consists of all such separated Tweet Json objects.
+
+| Arguments     | Description | Required |
+| ------------- | ------------- | ------------- |
+| i  | input source file name   | Yes |
+| o  | output file name  |   Yes |
+| d | dictionary file name | Yes |
+| t | no of threads (default is set to 1) | No |
+| v | verbose – which gives all details of the program – total no of tweets processed, no of tweets separated, counts for each term saved in a csv file, total time taken to run the program | No |
+| l | language | default set to English, but can take other languages “en” , “es”. | No |
+
+How to run separate_tweets.py for obtaining Spanish tweets:
+```
+python separate_tweets.py -i inputfile.json -d dictionary_file.tsv -o outputfile.json -l es -v y
 ```
 
 ### Parsing Tweet JSON files
