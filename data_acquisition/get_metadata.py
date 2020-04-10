@@ -61,7 +61,7 @@ def main():
     elif '.csv' in args.inputfile:
         inputfile_data = pd.read_csv(args.inputfile)
 
-    if not isinstance(idcolumn, NoneType):
+    if not isinstance(args.idcolumn, type(None)):
         inputfile_data = inputfile_data.set_index(args.idcolumn)
     else:
         inputfile_data = inputfile_data.set_index('tweet_id')
