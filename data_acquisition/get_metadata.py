@@ -34,7 +34,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-o", "--outputfile", help="Output file name with extension")
     parser.add_argument("-i", "--inputfile", help="Input file name with extension")
-    parser.add_argument("-c", "--id-column", help="tweet id column in the input file, string name")
+    parser.add_argument("-c", "--idcolumn", help="tweet id column in the input file, string name")
 
     args = parser.parse_args()
     if args.inputfile is None or args.outputfile is None:
@@ -61,7 +61,10 @@ def main():
     elif '.csv' in args.inputfile:
         inputfile_data = pd.read_csv(args.inputfile)
 
-    inputfile_data = inputfile_data.set_index('tweet_id')
+	if not isinstance(idcolumn, NoneType):
+    	inputfile_data = inputfile_data.set_index(args.idcolumn)
+	else:
+    	inputfile_data = inputfile_data.set_index('tweet_id')
     ids = list(inputfile_data.index)
 
     print('total ids: {}'.format(len(ids)))
