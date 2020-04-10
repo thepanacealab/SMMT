@@ -23,6 +23,9 @@ import csv
 import zipfile
 import zlib
 import argparse
+import os
+import os.path as osp
+import pandas as pd
 from tweepy import TweepError
 from time import sleep
 
@@ -31,6 +34,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-o", "--outputfile", help="Output file name with extension")
     parser.add_argument("-i", "--inputfile", help="Input file name with extension")
+    parser.add_argument("-c", "--idcolumn", help="tweet id column in the input file, string name")
 
     args = parser.parse_args()
     if args.inputfile is None or args.outputfile is None:
@@ -51,11 +55,17 @@ def main():
     compression = zipfile.ZIP_DEFLATED    
     ids = []
     
-    with open(args.inputfile) as f:
-        for line in f:
-            ids.append(line.replace("\n", ""))
-        print(ids)
-        print(len(ids))
+    if '.tsv' in args.inputfile:
+        inputfile_data = pd.read_csv(args.inputfile, sep='\t')
+        print('tab seperated file, using \\t delimiter')
+    elif '.csv' in args.inputfile:
+        inputfile_data = pd.read_csv(args.inputfile)
+
+    if not isinstance(args.idcolumn, type(None)):
+        inputfile_data = inputfile_data.set_index(args.idcolumn)
+    else:
+        inputfile_data = inputfile_data.set_index('tweet_id')
+    ids = list(inputfile_data.index)
 
     print('total ids: {}'.format(len(ids)))
 
@@ -64,21 +74,35 @@ def main():
     limit = len(ids)
     i = int(math.ceil(float(limit) / 100))
 
+    last_tweet = None
+    if osp.isfile(args.outputfile):
+        with open(output_file, 'rb') as f:
+            #may be a large file, seeking without iterating
+            f.seek(-2, os.SEEK_END)
+            while f.read(1) != b'\n':
+                f.seek(-2, os.SEEK_CUR)
+            last_line = f.readline().decode()
+        last_tweet = json.loads(last_line)
+        start = ids.index(last_tweet['id'])
+        end = start+100
+        i = int(math.ceil(float(limit-start) / 100))
+
     print('metadata collection complete')
     print('creating master json file')
-    with open(output_file, 'w') as outfile:
-        for go in range(i):
-            print('currently getting {} - {}'.format(start, end))
-            sleep(6)  # needed to prevent hitting API rate limit
-            id_batch = ids[start:end]
-            start += 100
-            end += 100
-            tweets = api.statuses_lookup(id_batch)
-            for tweet in tweets:
-                json.dump(tweet._json, outfile)
-                outfile.write('\n')
-        
-    outfile.close()
+    try:
+        with open(output_file, 'w') as outfile:
+            for go in range(i):
+                print('currently getting {} - {}'.format(start, end))
+                sleep(6)  # needed to prevent hitting API rate limit
+                id_batch = ids[start:end]
+                start += 100
+                end += 100
+                tweets = api.statuses_lookup(id_batch)
+                for tweet in tweets:
+                    json.dump(tweet._json, outfile)
+                    outfile.write('\n')
+    except:
+        print('exception: continuing to zip the file')
 
     print('creating ziped master json file')
     zf = zipfile.ZipFile('{}.zip'.format(output_file_noformat), mode='w')
