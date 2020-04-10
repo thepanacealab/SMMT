@@ -90,7 +90,7 @@ def main():
     print('metadata collection complete')
     print('creating master json file')
     try:
-        with open(output_file, 'w') as outfile:
+        with open(output_file, 'a') as outfile:
             for go in range(i):
                 print('currently getting {} - {}'.format(start, end))
                 sleep(6)  # needed to prevent hitting API rate limit
