@@ -61,10 +61,10 @@ def main():
     elif '.csv' in args.inputfile:
         inputfile_data = pd.read_csv(args.inputfile)
 
-	if not isinstance(idcolumn, NoneType):
-    	inputfile_data = inputfile_data.set_index(args.idcolumn)
-	else:
-    	inputfile_data = inputfile_data.set_index('tweet_id')
+    if not isinstance(idcolumn, NoneType):
+        inputfile_data = inputfile_data.set_index(args.idcolumn)
+    else:
+        inputfile_data = inputfile_data.set_index('tweet_id')
     ids = list(inputfile_data.index)
 
     print('total ids: {}'.format(len(ids)))
@@ -77,6 +77,7 @@ def main():
     last_tweet = None
     if osp.isfile(args.outputfile):
         with open(output_file, 'rb') as f:
+            #may be a large file, seeking without iterating
             f.seek(-2, os.SEEK_END)
             while f.read(1) != b'\n':
                 f.seek(-2, os.SEEK_CUR)
@@ -88,20 +89,20 @@ def main():
 
     print('metadata collection complete')
     print('creating master json file')
-	try:
-		with open(output_file, 'w') as outfile:
-			for go in range(i):
-				print('currently getting {} - {}'.format(start, end))
-				sleep(6)  # needed to prevent hitting API rate limit
-				id_batch = ids[start:end]
-				start += 100
-				end += 100
-				tweets = api.statuses_lookup(id_batch)
-				for tweet in tweets:
-					json.dump(tweet._json, outfile)
-					outfile.write('\n')
-	except:
-		print('exception: continuing to zip the file')
+    try:
+        with open(output_file, 'w') as outfile:
+            for go in range(i):
+                print('currently getting {} - {}'.format(start, end))
+                sleep(6)  # needed to prevent hitting API rate limit
+                id_batch = ids[start:end]
+                start += 100
+                end += 100
+                tweets = api.statuses_lookup(id_batch)
+                for tweet in tweets:
+                    json.dump(tweet._json, outfile)
+                    outfile.write('\n')
+    except:
+        print('exception: continuing to zip the file')
 
     print('creating ziped master json file')
     zf = zipfile.ZipFile('{}.zip'.format(output_file_noformat), mode='w')
