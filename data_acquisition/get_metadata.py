@@ -85,19 +85,20 @@ def main():
 
     print('metadata collection complete')
     print('creating master json file')
-    with open(output_file, 'w') as outfile:
-        for go in range(i):
-            print('currently getting {} - {}'.format(start, end))
-            sleep(6)  # needed to prevent hitting API rate limit
-            id_batch = ids[start:end]
-            start += 100
-            end += 100
-            tweets = api.statuses_lookup(id_batch)
-            for tweet in tweets:
-                json.dump(tweet._json, outfile)
-                outfile.write('\n')
-        
-    outfile.close()
+	try:
+		with open(output_file, 'w') as outfile:
+			for go in range(i):
+				print('currently getting {} - {}'.format(start, end))
+				sleep(6)  # needed to prevent hitting API rate limit
+				id_batch = ids[start:end]
+				start += 100
+				end += 100
+				tweets = api.statuses_lookup(id_batch)
+				for tweet in tweets:
+					json.dump(tweet._json, outfile)
+					outfile.write('\n')
+	except:
+		print('exception: continuing to zip the file')
 
     print('creating ziped master json file')
     zf = zipfile.ZipFile('{}.zip'.format(output_file_noformat), mode='w')
