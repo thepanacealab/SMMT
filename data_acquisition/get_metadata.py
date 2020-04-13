@@ -102,7 +102,6 @@ def main():
                 for tweet in tweets:
                     json.dump(tweet._json, outfile)
                     outfile.write('\n')
-                break
     except:
         print('exception: continuing to zip the file')
 
@@ -148,7 +147,7 @@ def main():
 
     print('creating CSV version of minimized json master file') 
     json_tweets = pd.DataFrame.from_dict(json_tweets)
-    json_tweets.to_csv(f'{output_file_noformat}.csv')
+    json_tweets.to_csv(f'{output_file_noformat}.csv', index=False)
 
 # main invoked here    
 if __name__ == '__main__':
