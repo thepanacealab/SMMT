@@ -28,6 +28,7 @@ import os.path as osp
 import pandas as pd
 from tweepy import TweepError
 from time import sleep
+from collections import defaultdict
 
 
 def main():
@@ -101,6 +102,7 @@ def main():
                 for tweet in tweets:
                     json.dump(tweet._json, outfile)
                     outfile.write('\n')
+                break
     except:
         print('exception: continuing to zip the file')
 
@@ -120,6 +122,8 @@ def main():
             return entry["source"]
     
     
+    json_tweets = defaultdict(list) #placeholder for minimized tweets
+
     print('creating minimized json master file')
     with open(output_file_short, 'w') as outfile:
         with open(output_file) as json_data:
@@ -135,18 +139,17 @@ def main():
                     "id_str": data["id_str"],
                     "is_retweet": is_retweet(data)
                 }
+                for key in t.keys():
+                    if key in data.keys():
+                        json_tweets[key].append(data[key])
+                json_tweets['is_retweet'].append(is_retweet(data))
                 json.dump(t, outfile)
                 outfile.write('\n')
-        
-    f = csv.writer(open('{}.csv'.format(output_file_noformat), 'w'))
+
     print('creating CSV version of minimized json master file') 
-    fields = ["favorite_count", "source", "text", "in_reply_to_screen_name", "is_retweet", "created_at", "retweet_count", "id_str"]                
-    f.writerow(fields)       
-    with open(output_file_short) as master_file:
-        for tweet in master_file:
-            data = json.loads(tweet)            
-            f.writerow([data["favorite_count"], data["source"], data["text"].encode('utf-8'), data["in_reply_to_screen_name"], data["is_retweet"], data["created_at"], data["retweet_count"], data["id_str"].encode('utf-8')])
-    
+    json_tweets = pd.DataFrame.from_dict(json_tweets)
+    json_tweets.to_csv(f'{output_file_noformat}.csv')
 
 # main invoked here    
-main()
+if __name__ == '__main__':
+    main()
