@@ -40,7 +40,7 @@ def genericFormat(ID,description,desc,i,csv_output):
 		csv_output.writerow(['DocumentID', 'TermID', 'SpanStart','SpanEnd'])
 	if len(desc.ents) > 0:
 		for ent in desc.ents:
-			csv_output.writerow([ID,ent.label_, ent.start_char, ent.end_char])
+			csv_output.writerow([ID, description, ent.label_, ent.start_char, ent.end_char])
 
 def bratFormat(description,desc,fO,i):
 	#print(len(desc.ents))
