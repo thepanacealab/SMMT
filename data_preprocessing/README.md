@@ -41,9 +41,11 @@ We provide two different json parsers:
 
 **Note:** For the preprocessing to work, the second argument must be p 
 
+Usage: 
+
 ```
 python parse_json_lite.py FILENAME.json
-python parse_json_lite.py FILENAME.json p 
+python parse_json_lite.py FILENAME.json p  #with preprocessing
 ```
 
 **parse_json_heavy.py** This is intended for json files over 1GB and into the terabytes, which have 1 tweet per line. This reads the file line by line, using less memory.
