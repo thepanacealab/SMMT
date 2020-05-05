@@ -15,6 +15,13 @@ We separated this toolkit in three categories (each one on an individual folder)
 1. Make sure you have your Twitter API keys handy if you are gathering any Twitter Data
 1. Each tool and their usage is described on the README file on each category of tools folder.
 
+All the libraries used in this toolkit can be installed using the following command. 
+
+```
+sh requirements.sh
+```
+**Note:**  If you would like to setup headless browsing automation tasks, please install additional dependencies given below.
+
 # Dependencies and versions used
 
 1. Python 3+

@@ -50,10 +50,17 @@ You will get four output files:
 1. a hydrated_tweets.zip file which contains a zipped version of the tweets_full.json file.
 1. a hydrated_tweets_short.json which contains a shortened version of the hydrated tweets. 
 
-**streaming.py** This utility fetches all the available tweets from the Twitter Stream. This utility does not take any search terms. Instead, it downloads tweets each day. The purpose of this is to leave the tool running on a separate process and constantly collect tweets for a period of time.
+**streaming.py** This utility fetches all the available tweets from the Twitter Stream. This utility does not take any search terms. Instead, it downloads tweets each day. The purpose of this is to leave the tool running on a separate process and constantly collect tweets for a period of time. The output of this utility is a json file with the 1% streaming sample with date of the day as the filename. This utility takes an argument to determine whether to compress the downloaded json file or not. If compression option is enabled, the json file is compressed in .zip format and file compression is carried out only after the day changes.
+The compression wont work if the utility is terminated externally. 
+
+**Note** - If you would like to compress the json file, you will have to send "compress" in the argument.
 
 ```
-Usage : python streaming.py
+Usage 
+python streaming.py nocompress #does not compress the json file
+python streaming.py compress #compresses the json file
+
+
 ```
 ### Output: 
 You will get one json file per day with the date as prefix of the file.  
