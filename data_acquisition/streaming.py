@@ -1,3 +1,7 @@
+#  The streaming.py code is compiled using the code from Global Connectivity and Multilinguals in the Twitter Network
+#  Paper citation - Hale, S. A. (2014) Global Connectivity and Multilinguals in the Twitter Network.In Proceedings of the 2014 ACM Annual Conference on Human Factors in Computing Systems, ACM (Montreal, Canada).
+# Please cite this paper if using streaming.py code
+
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
@@ -8,12 +12,6 @@ import time
 import sys
 import zipfile
 import zlib
-
-try:
-	import smtplib
-	from email.mime.text import MIMEText
-except:
-	sys.stderr.write("Error loading smtplib. Will not be able to send emails...\n")
 
 # Output directory to hold json files (one per day) with tweets
 # Within the output directory, the script loads a file named FILTER with the terms to be tracked (one per line)
@@ -76,7 +74,7 @@ class FileDumperListener(StreamListener):
 			try:
 				self.fh.close()
 			except:
-				#Log/Email it
+				#Log it
 				pass
 			self.filename=filenow
 			self.fh = open(self.basePath + "/" + self.filename,"a")
@@ -150,13 +148,6 @@ if __name__ == '__main__':
 			try:
 				info = str(e)
 				sys.stderr.write("%s - Unexpected exception. %s\n"%(datetime.now(),info))
-				msg = MIMEText("Unexpected error in Twitter collector. Check server. %s"%info)
-				msg['Subject'] = "Unexpected error in Twitter collector"
-				msg['From'] = "youremail@example.com"
-				msg['To'] = email
-				s = smtplib.SMTP("smtp.example.com") #Update this to your SMTP server
-				s.sendmail("youremail@example.com", email, msg.as_string())
-				s.quit()
 			except:
 				pass
 			time.sleep(1800)#Sleep thirty minutes and resume
