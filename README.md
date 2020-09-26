@@ -77,6 +77,11 @@ https://www.tienle.com/2016/09-20/run-selenium-firefox-browser-centos.html
 # Twitter Keys
 **This is a very important step, if you do not have any Twitter API keys, none of the software that uses Twitter API will work without it**
 
+# How to cite our work:
+If you used SMMT and liked it, please cite the following paper:
+
+R Tekumalla and JM Banda. "Social Media Mining Toolkit (SMMT)". Genomics & Informatics, 18, (2), 2020. https://doi.org/10.5808/GI.2020.18.2.e16
+
 # Social Media Mining Toolkit (SMMT) Extra Information
 
 ## Data Acquisition Tools:
