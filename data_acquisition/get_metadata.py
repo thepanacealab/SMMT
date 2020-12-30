@@ -47,6 +47,13 @@ def main():
     auth.set_access_token(keys['access_token'], keys['access_token_secret'])
     api = tweepy.API(auth)
     
+    if api.verify_credentials() == False: 
+        print("Your twitter api credentials are invalid") 
+        sys.exit()
+    else: 
+        print("Your twitter api credentials are valid.") 
+    
+    
     output_file = args.outputfile
     output_file_noformat = output_file.split(".",maxsplit=1)[0]
     print(output_file)
