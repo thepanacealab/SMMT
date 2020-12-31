@@ -124,10 +124,15 @@ def main():
     with open(output_file_short, 'w') as outfile:
         with open(output_file) as json_data:
             for tweet in json_data:
-                data = json.loads(tweet)            
+                data = json.loads(tweet)  
+                try:  
+                    text = data["full_text"]
+                except KeyError:
+                    text = data["text"]
+                except:          
                 t = {
                     "created_at": data["created_at"],
-                    "full_text": data["full_text"],
+                    "text": text,
                     "in_reply_to_screen_name": data["in_reply_to_screen_name"],
                     "retweet_count": data["retweet_count"],
                     "favorite_count": data["favorite_count"],
@@ -145,7 +150,7 @@ def main():
     with open(output_file_short) as master_file:
         for tweet in master_file:
             data = json.loads(tweet)            
-            f.writerow([data["favorite_count"], data["source"], data["full_text"].encode('utf-8'), data["in_reply_to_screen_name"], data["is_retweet"], data["created_at"], data["retweet_count"], data["id_str"].encode('utf-8')])
+            f.writerow([data["favorite_count"], data["source"], data["text"].encode('utf-8'), data["in_reply_to_screen_name"], data["is_retweet"], data["created_at"], data["retweet_count"], data["id_str"].encode('utf-8')])
     
 
 # main invoked here    
