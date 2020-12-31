@@ -97,7 +97,7 @@ def main():
                 id_batch = ids[start:end]
                 start += 100
                 end += 100
-                tweets = api.statuses_lookup(id_batch)
+                tweets = api.statuses_lookup(id_batch, tweet_mode='extended')
                 for tweet in tweets:
                     json.dump(tweet._json, outfile)
                     outfile.write('\n')
@@ -127,7 +127,7 @@ def main():
                 data = json.loads(tweet)            
                 t = {
                     "created_at": data["created_at"],
-                    "text": data["text"],
+                    "full_text": data["full_text"],
                     "in_reply_to_screen_name": data["in_reply_to_screen_name"],
                     "retweet_count": data["retweet_count"],
                     "favorite_count": data["favorite_count"],
@@ -140,12 +140,12 @@ def main():
         
     f = csv.writer(open('{}.csv'.format(output_file_noformat), 'w'))
     print('creating CSV version of minimized json master file') 
-    fields = ["favorite_count", "source", "text", "in_reply_to_screen_name", "is_retweet", "created_at", "retweet_count", "id_str"]                
+    fields = ["favorite_count", "source", "full_text", "in_reply_to_screen_name", "is_retweet", "created_at", "retweet_count", "id_str"]                
     f.writerow(fields)       
     with open(output_file_short) as master_file:
         for tweet in master_file:
             data = json.loads(tweet)            
-            f.writerow([data["favorite_count"], data["source"], data["text"].encode('utf-8'), data["in_reply_to_screen_name"], data["is_retweet"], data["created_at"], data["retweet_count"], data["id_str"].encode('utf-8')])
+            f.writerow([data["favorite_count"], data["source"], data["full_text"].encode('utf-8'), data["in_reply_to_screen_name"], data["is_retweet"], data["created_at"], data["retweet_count"], data["id_str"].encode('utf-8')])
     
 
 # main invoked here    
