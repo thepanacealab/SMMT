@@ -128,8 +128,7 @@ def main():
                 try:  
                     text = data["full_text"]
                 except KeyError:
-                    text = data["text"]
-                except:          
+                    text = data["text"]         
                 t = {
                     "created_at": data["created_at"],
                     "text": text,
