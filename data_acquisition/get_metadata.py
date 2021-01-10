@@ -104,17 +104,15 @@ def main():
                 id_batch = ids[start:end]
                 start += 100
                 end += 100
+                backOffCounter = 1
                 while True:
                     try:
                         tweets = api.statuses_lookup(id_batch, tweet_mode='extended')
                         break
-                    except IOError as e:
-                        # this catches error 104 which occurs when we wait too long for the rate limit to refresh
-                        print('Caught the IOError exception:\n %s' % e)
-                        continue
-                    except ConnectionError as ex:
-                        print('Caught the ConnectionError exception:\n %s' % e)
-                        sleep(30)  # sleep a bit to see if connection Error is resolved before retrying
+                    except tweepy.TweepError as ex:
+                        print('Caught the TweepError exception:\n %s' % e)
+                        sleep(30*backOffCounter)  # sleep a bit to see if connection Error is resolved before retrying
+                        backOffCounter += 1  # increase backoff
                         continue
                 for tweet in tweets:
                     json.dump(tweet._json, outfile)
