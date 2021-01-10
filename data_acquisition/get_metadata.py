@@ -110,7 +110,7 @@ def main():
                         tweets = api.statuses_lookup(id_batch, tweet_mode='extended')
                         break
                     except tweepy.TweepError as ex:
-                        print('Caught the TweepError exception:\n %s' % e)
+                        print('Caught the TweepError exception:\n %s' % ex)
                         sleep(30*backOffCounter)  # sleep a bit to see if connection Error is resolved before retrying
                         backOffCounter += 1  # increase backoff
                         continue
