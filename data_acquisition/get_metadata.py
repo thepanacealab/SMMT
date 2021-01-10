@@ -45,7 +45,7 @@ def main():
 
     auth = tweepy.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
     auth.set_access_token(keys['access_token'], keys['access_token_secret'])
-    api = tweepy.API(auth)
+    api = tweepy.API(auth, wait_on_rate_limit=True, retry_delay=60*3, retry_count=5,retry_errors=set([401, 404, 500, 503]), wait_on_rate_limit_notify=True)
     
     if api.verify_credentials() == False: 
         print("Your twitter api credentials are invalid") 
@@ -104,7 +104,18 @@ def main():
                 id_batch = ids[start:end]
                 start += 100
                 end += 100
-                tweets = api.statuses_lookup(id_batch)
+                while True:
+                    try:
+                        tweets = api.statuses_lookup(id_batch, tweet_mode='extended')
+                        break
+                    except IOError as e:
+                        # this catches error 104 which occurs when we wait too long for the rate limit to refresh
+                        print('Caught the IOError exception:\n %s' % e)
+                        continue
+                    except ConnectionError as ex:
+                        print('Caught the ConnectionError exception:\n %s' % e)
+                        sleep(30)  # sleep a bit to see if connection Error is resolved before retrying
+                        continue
                 for tweet in tweets:
                     json.dump(tweet._json, outfile)
                     outfile.write('\n')
