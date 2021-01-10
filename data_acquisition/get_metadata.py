@@ -82,7 +82,7 @@ def main():
     i = int(math.ceil(float(limit) / 100))
 
     last_tweet = None
-    if osp.isfile(args.outputfile):
+    if osp.isfile(args.outputfile) and osp.getsize(args.outputfile) > 0::
         with open(output_file, 'rb') as f:
             #may be a large file, seeking without iterating
             f.seek(-2, os.SEEK_END)
