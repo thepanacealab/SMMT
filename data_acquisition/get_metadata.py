@@ -34,13 +34,17 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-o", "--outputfile", help="Output file name with extension")
     parser.add_argument("-i", "--inputfile", help="Input file name with extension")
+    parser.add_argument("-k", "--keyfile", help="Json api key file name")
     parser.add_argument("-c", "--idcolumn", help="tweet id column in the input file, string name")
 
     args = parser.parse_args()
     if args.inputfile is None or args.outputfile is None:
         parser.error("please add necessary arguments")
+        
+    if args.keyfile is None:
+        parser.error("please add a keyfile argument")
 
-    with open('api_keys.json') as f:
+    with open(args.keyfile) as f:
         keys = json.load(f)
 
     auth = tweepy.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
