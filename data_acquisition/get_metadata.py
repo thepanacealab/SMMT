@@ -34,6 +34,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-o", "--outputfile", help="Output file name with extension")
     parser.add_argument("-i", "--inputfile", help="Input file name with extension")
+    parser.add_argument("-k", "--keyfile", help="Json api key file name")
     parser.add_argument("-c", "--idcolumn", help="tweet id column in the input file, string name")
     parser.add_argument("-m", "--mode", help="Enter e for extended mode ; else the program would consider default compatible mode")
 
@@ -41,13 +42,16 @@ def main():
     args = parser.parse_args()
     if args.inputfile is None or args.outputfile is None:
         parser.error("please add necessary arguments")
+        
+    if args.keyfile is None:
+        parser.error("please add a keyfile argument")
 
-    with open('api_keys.json') as f:
+    with open(args.keyfile) as f:
         keys = json.load(f)
 
     auth = tweepy.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
     auth.set_access_token(keys['access_token'], keys['access_token_secret'])
-    api = tweepy.API(auth)
+    api = tweepy.API(auth, wait_on_rate_limit=True, retry_delay=60*3, retry_count=5,retry_errors=set([401, 404, 500, 503]), wait_on_rate_limit_notify=True)
     
     if api.verify_credentials() == False: 
         print("Your twitter api credentials are invalid") 
@@ -89,7 +93,7 @@ def main():
     i = int(math.ceil(float(limit) / 100))
 
     last_tweet = None
-    if osp.isfile(args.outputfile):
+    if osp.isfile(args.outputfile) and osp.getsize(args.outputfile) > 0:
         with open(output_file, 'rb') as f:
             #may be a large file, seeking without iterating
             f.seek(-2, os.SEEK_END)
@@ -110,12 +114,20 @@ def main():
                 sleep(6)  # needed to prevent hitting API rate limit
                 id_batch = ids[start:end]
                 start += 100
-                end += 100
-                if hydration_mode == "e":
-                    tweets = api.statuses_lookup(id_batch,tweet_mode = "extended")
-                else:
-                    tweets = api.statuses_lookup(id_batch)
-                
+                end += 100       
+                backOffCounter = 1
+                while True:
+                    try:
+                        if hydration_mode == "e":
+                            tweets = api.statuses_lookup(id_batch,tweet_mode = "extended")
+                        else:
+                            tweets = api.statuses_lookup(id_batch)
+                        break
+                    except tweepy.TweepError as ex:
+                        print('Caught the TweepError exception:\n %s' % ex)
+                        sleep(30*backOffCounter)  # sleep a bit to see if connection Error is resolved before retrying
+                        backOffCounter += 1  # increase backoff
+                        continue
                 for tweet in tweets:
                     json.dump(tweet._json, outfile)
                     outfile.write('\n')
