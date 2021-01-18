@@ -36,6 +36,8 @@ def main():
     parser.add_argument("-i", "--inputfile", help="Input file name with extension")
     parser.add_argument("-k", "--keyfile", help="Json api key file name")
     parser.add_argument("-c", "--idcolumn", help="tweet id column in the input file, string name")
+    parser.add_argument("-m", "--mode", help="Enter e for extended mode ; else the program would consider default compatible mode")
+
 
     args = parser.parse_args()
     if args.inputfile is None or args.outputfile is None:
@@ -59,6 +61,8 @@ def main():
     
     
     output_file = args.outputfile
+    hydration_mode = args.mode
+
     output_file_noformat = output_file.split(".",maxsplit=1)[0]
     print(output_file)
     output_file = '{}'.format(output_file)
@@ -71,13 +75,16 @@ def main():
         print('tab seperated file, using \\t delimiter')
     elif '.csv' in args.inputfile:
         inputfile_data = pd.read_csv(args.inputfile)
-
+    elif '.txt' in args.inputfile:
+        inputfile_data = pd.read_csv(args.inputfile, sep='\n', header=None, names= ['tweet_id'] )
+        print(inputfile_data)
+    
     if not isinstance(args.idcolumn, type(None)):
         inputfile_data = inputfile_data.set_index(args.idcolumn)
     else:
         inputfile_data = inputfile_data.set_index('tweet_id')
+    
     ids = list(inputfile_data.index)
-
     print('total ids: {}'.format(len(ids)))
 
     start = 0
@@ -107,11 +114,14 @@ def main():
                 sleep(6)  # needed to prevent hitting API rate limit
                 id_batch = ids[start:end]
                 start += 100
-                end += 100
+                end += 100       
                 backOffCounter = 1
                 while True:
                     try:
-                        tweets = api.statuses_lookup(id_batch, tweet_mode='extended')
+                        if hydration_mode == "e":
+                            tweets = api.statuses_lookup(id_batch,tweet_mode = "extended")
+                        else:
+                            tweets = api.statuses_lookup(id_batch)
                         break
                     except tweepy.TweepError as ex:
                         print('Caught the TweepError exception:\n %s' % ex)
@@ -144,10 +154,14 @@ def main():
     with open(output_file_short, 'w') as outfile:
         with open(output_file) as json_data:
             for tweet in json_data:
-                data = json.loads(tweet)            
+                data = json.loads(tweet) 
+                if hydration_mode == "e":
+                    text = data["full_text"]
+                else:
+                    text = data["text"]          
                 t = {
                     "created_at": data["created_at"],
-                    "text": data["text"],
+                    "text": text,
                     "in_reply_to_screen_name": data["in_reply_to_screen_name"],
                     "retweet_count": data["retweet_count"],
                     "favorite_count": data["favorite_count"],
