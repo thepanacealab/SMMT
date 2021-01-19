@@ -29,10 +29,11 @@ _NOTE: You need to have your Twitter API keys on a file named: api_keys.json. We
 ### Output:
 A single file called tweetsids.json that contains the tweet identifiers for all the scrapped tweets. Note that you still need to 'hydrate' these identifiers to get the full proper json object. This file can either be hydrated with Twarc or use the get_metadata.py utility for this purpose.
 
-**get_metadata.py** This utility will take a file which meets the following requirements.
-    - a text file which contains one tweet id per line
-    - a csv file which either contains one tweet id per line or contains at least one column of tweet ids
-    - a tsv file which either contains one tweet id per line or contains at least one column of tweet ids
+**get_metadata.py** This utility will take a file which meets the following requirements:
+
+    1. a text file which contains one tweet id per line
+    1. a csv file which either contains one tweet id per line or contains at least one column of tweet ids
+    1. a tsv file which either contains one tweet id per line or contains at least one column of tweet ids
 
 
 |Arguments|Description|Details|Required |
