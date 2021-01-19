@@ -31,9 +31,9 @@ A single file called tweetsids.json that contains the tweet identifiers for all 
 
 **get_metadata.py** This utility will take a file which meets the following requirements:
 
-    1. a text file which contains one tweet id per line
-    1. a csv file which either contains one tweet id per line or contains at least one column of tweet ids
-    1. a tsv file which either contains one tweet id per line or contains at least one column of tweet ids
+1. a text file which contains one tweet id per line
+1. a csv file which either contains one tweet id per line or contains at least one column of tweet ids
+1. a tsv file which either contains one tweet id per line or contains at least one column of tweet ids
 
 
 |Arguments|Description|Details|Required |
