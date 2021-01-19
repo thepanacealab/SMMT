@@ -46,7 +46,7 @@ A single file called tweetsids.json that contains the tweet identifiers for all 
 
 
 ```
-Usage : python get_metadata.py -i tweetids.txt -o hydrated_tweets
+Usage : python get_metadata.py -i tweetids.txt -o hydrated_tweets -k api_keys.json
 ```
 
 ### Output: 
