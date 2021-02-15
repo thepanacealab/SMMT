@@ -15,7 +15,9 @@
 |d|Allow duplicate tweets?|No; Default value set to "Y" |
 
 ```
-Usage : python search_generic.py -s "donald trump,coronavirus" -n 100
+Usage : 
+
+python search_generic.py -s "donald trump,coronavirus" -n 100
 
 python search_generic.py -s "covid19" -n 300 -d n
 
