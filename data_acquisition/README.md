@@ -6,7 +6,7 @@
 
 **search_generic.py** This utility allows you to pass a few query terms and the tool with go to the Twitter stream and collect available tweets using the set of keywords. If you select a rare keyword this might end very shortly. The purpose of this utility is to obtain "n" number of tweets. Please be careful with the "n". Please follow twitter download rates. If you exceed, twitter might block your keys.
 
-**_IMPORTANT**: This utility retrieves duplicate tweets. In order to obtain only unique tweets, set -d = n. Please see the usage for an example
+**_IMPORTANT**: This utility retrieves duplicate tweets if there are no new tweets in the search criteria. In order to obtain only unique tweets, set -d = n. Please see the usage for an example
 
 |Arguments|Description|Required |
 | ------------- | ------------- | ------------- |
