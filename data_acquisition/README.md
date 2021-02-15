@@ -6,19 +6,25 @@
 
 **search_generic.py** This utility allows you to pass a few query terms and the tool with go to the Twitter stream and collect available tweets using the set of keywords. If you select a rare keyword this might end very shortly. The purpose of this utility is to obtain "n" number of tweets. Please be careful with the "n". Please follow twitter download rates. If you exceed, twitter might block your keys.
 
+**_IMPORTANT**: This utility retrieves duplicate tweets. In order to obtain only unique tweets, set -d = n. Please see the usage for an example
+
 |Arguments|Description|Required |
 | ------------- | ------------- | ------------- |
 |s|search terms for the query ; separated by ",". Look at the usage for example|Yes |
 |n|Number of tweets required|Yes |
+|d|Allow duplicate tweets?|No; Default value set to "Y" |
 
 ```
 Usage : python search_generic.py -s "donald trump,coronavirus" -n 100
+
+python search_generic.py -s "covid19" -n 300 -d n
+
 ```
 
 ### Output: 
 Json files with the keyword you searched as a prefix.
 
-_IMPORTAT: This tool needs your keys to be placed on a file called auth.py. We provide a template called copy_auth.py that you need to fill in with your API keys and rename to auth.py._
+_IMPORTANT: This tool needs your keys to be placed on a file called auth.py. We provide a template called copy_auth.py that you need to fill in with your API keys and rename to auth.py._
 
 ## Scraping Tool:
 

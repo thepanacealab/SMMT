@@ -4,3 +4,4 @@ class TwitterAuth:
         consumer_secret =  "YOURKEYGOESHERE"
         access_token =  "YOURKEYGOESHERE"
         access_token_secret =  "YOURKEYGOESHERE"
+        
