@@ -15,14 +15,14 @@
 Usage : python create_dictionary.py -i uberon.tsv -o newuberon_dict.tsv
 ```
 
-**SMMT_NER_basic.py** This utility will annotate tweets in a given TSV file (TSV_source.tsv) with format tweetID tab Text, with a given dictionary dictionary_file.txt - with format termID TAB termString. The output can be obtained in 4 different formats. 
+**SMMT_NER_basic.py** This utility will annotate tweets in a given TSV file (TSV_source.tsv) with format tweetID tab Text, with a given dictionary dictionary_file.txt - with format termID TAB termString. The output can be obtained in 3 different formats. 
 
-**  Format compatible with Brat tool (https://brat.nlplab.org/manual.html) **
+**Format compatible with Brat tool (https://brat.nlplab.org/manual.html)**
  - The output file consists of Textannotation TAB TermId TAB startSpan TAB endSpan. 
  - The annotated output file must be saved with an extension ".ann".
  - To use the Brat Visualization tool, annotation file and Text file (file with only one tweet Text per line) must be uploaded.
 
-** Format compatible with TextAE and PubAnnotation (https://textae.pubannotation.org/) **
+**Format compatible with TextAE and PubAnnotation (https://textae.pubannotation.org/)**
 - The output file consists of Json object.
 - To use the output file, open the text editor on TextAE and import the output file. 
 - The following image is an example of visualization with a single term annotation.
@@ -32,6 +32,9 @@ Usage : python create_dictionary.py -i uberon.tsv -o newuberon_dict.tsv
 - The following image is an example of visualization of annotation with two terms.
 
 ![TextAE and Pub Annotation Example 2](2termsAE.PNG)
+
+**Generic Format**
+- The output file is generated with the following format - tweetId TAB tweetText TAB termID TAB startSpan TAB endSpan
 
 
 | Arguments     | Description | Required |

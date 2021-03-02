@@ -37,16 +37,22 @@ python separate_tweets.py -i inputfile.json -d dictionary_file.tsv -o outputfile
 
 We provide two different json parsers:
 
-**parse_json_lite.py** If your json file is less than 1GB (and you have enough RAM), this will be the one to use. It reads the full file in memory, so it should not be used for very large files.
+**parse_json_lite.py** If your json file is less than 1GB (and you have enough RAM), this will be the one to use. It reads the full file in memory, so it should not be used for very large files. This utility takes two arguments. The first argument is the json file. The second argument is optional. If the second argument is given, it will preprocess the json file. The preprocessing includes removal of URLs, twitter specific Urls, Emojis, Emoticons. 
+
+**Note:** For the preprocessing to work, the second argument must be p 
+
+Usage: 
+
+```
+python parse_json_lite.py FILENAME.json
+python parse_json_lite.py FILENAME.json p  #with preprocessing
+```
 
 **parse_json_heavy.py** This is intended for json files over 1GB and into the terabytes, which have 1 tweet per line. This reads the file line by line, using less memory.
 
 NOTE: By default both parsers will output tab delimited files.
 
 How to run the parsers:
-```
-python parse_json_lite.py FILENAME.json
-```
 
 or
 ```

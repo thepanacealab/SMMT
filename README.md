@@ -1,12 +1,18 @@
-# Social Media Mining Toolkit (SMMT) main repository
+# Social Media Mining Toolkit (SMMT)
 
-The set of tools collected and presented here are designed with the purpose of facilitating the acquisition, preprocessing, and initial exploration of social media data (mostly Twitter for now). This centralized repository depends on other widely available libraries that need to be installed. 
-
-We separated this toolkit in three categories (each one on an individual folder):
-
-1. Data Acquisition Tools: Utilities to gather data from social media sites.
-1. Data Preprocessing  Tools: Utilities to parse social media 'raw' data and to separate by terms
-1. Data Annotation and Standardization Tools: Utilities to make automatic NER annotations on preprocessed tweets, plugins to use popular annotation tools and NER systems.
+<table border="1" style='border-collapse:collapse;color:#000'>
+<thead>
+  <tr style='border:1px solid white;'>
+    <td style='border:0px solid white;' width="30%"><img src="http://www.jmbanda.com/SMMT_sticker.png" alt="Aphrodite Sticker"></td>
+    <td style='border:0px solid white;'> The set of tools collected and presented here are designed with the purpose of facilitating the acquisition, preprocessing, and initial exploration of social media data (mostly Twitter for now). This centralized repository depends on other widely available libraries that need to be installed. <br/><br/>
+We separated this toolkit in three categories (each one on an individual folder): <br/><br/>
+1. <b>Data Acquisition Tools:</b> Utilities to gather data from social media sites <br/>
+2. <b>Data Preprocessing Tools:</b> Utilities to parse social media 'raw' data and to separate by terms <br/>
+      3. <b>Data Annotation and Standardization Tools:</b> Utilities to make automatic NER annotations on preprocessed tweets, plugins to use popular annotation tools and NER systems <br/>
+    </td>
+  </tr>
+</thead>
+</table>
 
 # Usage
 
@@ -14,6 +20,13 @@ We separated this toolkit in three categories (each one on an individual folder)
 1. Clone repository
 1. Make sure you have your Twitter API keys handy if you are gathering any Twitter Data
 1. Each tool and their usage is described on the README file on each category of tools folder.
+
+All the libraries used in this toolkit can be installed using the following command. 
+
+```
+sh requirements.sh
+```
+**Note:**  If you would like to setup headless browsing automation tasks, please install additional dependencies given below.
 
 # Dependencies and versions used
 
@@ -64,9 +77,12 @@ https://www.tienle.com/2016/09-20/run-selenium-firefox-browser-centos.html
 # Twitter Keys
 **This is a very important step, if you do not have any Twitter API keys, none of the software that uses Twitter API will work without it**
 
-# Social Media Mining Toolkit (SMMT) Extra Information
+# How to cite our work:
+If you used SMMT and liked it, please cite the following paper:
 
-![SMMT](http://www.jmbanda.com/sMMT_smalllogo.png)
+R Tekumalla and JM Banda. "Social Media Mining Toolkit (SMMT)". Genomics & Informatics, 18, (2), 2020. https://doi.org/10.5808/GI.2020.18.2.e16
+
+# Social Media Mining Toolkit (SMMT) Extra Information
 
 ## Data Acquisition Tools:
 1. **Twitter hydration tool** - This script will hydrate tweet ID’s provided by others. 

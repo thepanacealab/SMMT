@@ -1,3 +1,7 @@
+#  The streaming.py code is compiled using the code from Global Connectivity and Multilinguals in the Twitter Network
+#  Paper citation - Hale, S. A. (2014) Global Connectivity and Multilinguals in the Twitter Network.In Proceedings of the 2014 ACM Annual Conference on Human Factors in Computing Systems, ACM (Montreal, Canada).
+# Please cite this paper if using streaming.py code
+
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
@@ -6,17 +10,14 @@ import os
 import json
 import time
 import sys
-
-try:
-	import smtplib
-	from email.mime.text import MIMEText
-except:
-	sys.stderr.write("Error loading smtplib. Will not be able to send emails...\n")
+import zipfile
+import zlib
 
 # Output directory to hold json files (one per day) with tweets
 # Within the output directory, the script loads a file named FILTER with the terms to be tracked (one per line)
 
 outputDir = "outputDir"
+compress_status = sys.argv[1]
 
 ## End of Settings###
 
@@ -51,6 +52,14 @@ class FileDumperListener(StreamListener):
 		except:
 			#Log/email
 			pass
+
+	def compress(self):
+		print("compressing the json file")
+		output_file_noformat = self.filename.split(".",maxsplit=1)[0]
+		compression = zipfile.ZIP_DEFLATED    
+		zf = zipfile.ZipFile('{}.zip'.format(outputDir+"/"+output_file_noformat), mode='w')
+		zf.write(outputDir+"/"+self.filename, compress_type=compression)
+		zf.close()
 	
 	#Rotate the log file if needed.
 	#Warning: Check for log rotation only occurs when a tweet is received and not more than once every five minutes.
@@ -60,10 +69,12 @@ class FileDumperListener(StreamListener):
 		filenow = "%i-%02d-%02d.json"%(d.year,d.month,d.day)
 		if (self.filename!=filenow):
 			print("%s - Rotating log file. Old: %s New: %s"%(datetime.now(),self.filename,filenow))
+			if compress_status == "compress":
+				self.compress()
 			try:
 				self.fh.close()
 			except:
-				#Log/Email it
+				#Log it
 				pass
 			self.filename=filenow
 			self.fh = open(self.basePath + "/" + self.filename,"a")
@@ -137,13 +148,6 @@ if __name__ == '__main__':
 			try:
 				info = str(e)
 				sys.stderr.write("%s - Unexpected exception. %s\n"%(datetime.now(),info))
-				msg = MIMEText("Unexpected error in Twitter collector. Check server. %s"%info)
-				msg['Subject'] = "Unexpected error in Twitter collector"
-				msg['From'] = "youremail@example.com"
-				msg['To'] = email
-				s = smtplib.SMTP("smtp.example.com") #Update this to your SMTP server
-				s.sendmail("youremail@example.com", email, msg.as_string())
-				s.quit()
 			except:
 				pass
 			time.sleep(1800)#Sleep thirty minutes and resume
