@@ -31,7 +31,7 @@ import tweepy
 from tweepy.parsers import RawParser
 import sys
 import argparse
-from auth import TwitterAuth
+from copy_auth import TwitterAuth
 
 def logPrint(s, fhLog):
 	fhLog.write("%s\n"%s)
@@ -42,6 +42,9 @@ def main():
 	parser.add_argument("-s", "--searchterm", help="Search terms separated by comma.")
 	parser.add_argument("-n", "--resultslimit", help="Total number of results the search should be limited to.")
 	parser.add_argument("-d", "--duplicates", help="Enter N if you want unique tweets. Default mode allows duplicate tweets.", default = "Y" )
+	parser.add_argument("-s30", "--search30days", help="Search terms from the twitter archive in the past 30 days", action="store_true")
+	parser.add_argument('-f', '--frm', help='From date: to search previous tweets (2021-01-28)', type=lambda s: datetime.datetime.strptime(s, '%Y-%m-%d'))
+	parser.add_argument('-t', '--to', help='To date: to search previous tweets (2021-01-30)', type=lambda s: datetime.datetime.strptime(s, '%Y-%m-%d'))
 
 	args = parser.parse_args()
 	#only search term arugment is required
@@ -80,24 +83,34 @@ def main():
 					searchCount = 100
 				else:
 					searchCount = remainingCount
-				result=api.search(count=searchCount,q=term,result_type="recent")
-				limitS=len(result['statuses'])
+				if args.search30days:
+					frm = args.frm.strftime('%Y%m%d%H%M')
+					to = args.to.strftime('%Y%m%d%H%M')
+					result=api.search_30_day(query=term, maxResults=searchCount, fromDate=frm, toDate=to, environment_name=TwitterAuth.environment_label)
+				else:
+					result=api.search(count=searchCount,q=term,result_type="recent")
+				if 'statuses' in result:
+					resultset_id = 'statuses'
+				elif 'results' in result:
+					resultset_id = 'results'
+				
+				limitS=len(result[resultset_id])
 				
 				if duplicates_entry =="Y":
 					for i in range(0,limitS):
-						fh.write(json.dumps(result['statuses'][i]) + "\n")
+						fh.write(json.dumps(result[resultset_id][i]) + "\n")
 					remainingCount = resultsLimit if args.resultslimit is None else (remainingCount - 100)
 					print("Number of tweets retrieved = " +str(resultsLimit-remainingCount))
 
 				elif duplicates_entry == "N" or "n":
 					for i in range(0,limitS):
-						tweet_id = result['statuses'][i]['id']
+						tweet_id = result[resultset_id][i]['id']
 						if tweet_id not in tweetids_uniq:
 							tweetids_uniq.append(tweet_id)
-							fh.write(json.dumps(result['statuses'][i]) + "\n")
+							fh.write(json.dumps(result[resultset_id][i]) + "\n")
 						else:
 							continue
-					if "statuses" in result and len(result["statuses"])>0:
+					if resultset_id in result and len(result[resultset_id])>0:
 						print("Number of tweets retrieved = " +str(len(tweetids_uniq)))
 					remainingCount = resultsLimit if args.resultslimit is None else (resultsLimit - len(tweetids_uniq))
 				
