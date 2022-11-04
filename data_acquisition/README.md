@@ -61,11 +61,11 @@ python -c 'from scrape_by_hashtag import *; scrape_by_hashtag([\"#longcovid\", \
 ```
  
  ### Output: 
+You will get two output files:
 1. A JSON file which contains all the fields mentioned above (per tweet)
 1. A CSV file which contains all the fields mentioned above (per tweet)
  
- You will get two output files:
- 
+Note that you still need to 'hydrate' these identifiers to get the full proper json object. This file can either be hydrated with Twarc or use the get_metadata.py utility for this purpose.
 
 **get_metadata.py** This utility will take a file which meets the following requirements:
 
