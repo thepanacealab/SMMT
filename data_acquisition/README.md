@@ -28,7 +28,7 @@ Json files with the keyword you searched as a prefix.
 
 _IMPORTANT: This tool needs your keys to be placed on a file called auth.py. We provide a template called copy_auth.py that you need to fill in with your API keys and rename to auth.py._
 
-## Scraping Tool:
+## Scraping Tool (test):
 
 **scrape.py** This utility allows users to pass a list of Twitter userNames/handles, a starting date, and an ending date for scraping. You can pass these parameters on the _userConfig.py_ file. You can pass one or many users, making sure each one has a corresponding start and end date. The file is structured as a Python list where you edit the individual elements. The provided _userConfig.py_ file is an example of how to gather the Tweets of Donald Trump for a give particular date. The intended purpose of this tool is to gather historical tweets in order for a time range that are otherwise not available via the Twitter API. 
 
