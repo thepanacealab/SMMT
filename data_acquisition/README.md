@@ -30,7 +30,7 @@ _IMPORTANT: This tool needs your keys to be placed on a file called auth.py. We 
 
 ## Scraping Tool:
 
-This is an updated version from the original project created by @Andrew-Wen (which can be found in the following link: [[https://github.com/thepanacealab/junzhi_project1]])
+This is an updated version from the original project created by @Andrew-Wen (which can be found in the following link: https://github.com/thepanacealab/junzhi_project1)
 
 This utility allows users to get tweets:
   * By specifying a single user or hashtag.
