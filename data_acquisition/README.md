@@ -28,14 +28,44 @@ Json files with the keyword you searched as a prefix.
 
 _IMPORTANT: This tool needs your keys to be placed on a file called auth.py. We provide a template called copy_auth.py that you need to fill in with your API keys and rename to auth.py._
 
-## Scraping Tool (test):
+## Scraping Tool:
 
-**scrape.py** This utility allows users to pass a list of Twitter userNames/handles, a starting date, and an ending date for scraping. You can pass these parameters on the _userConfig.py_ file. You can pass one or many users, making sure each one has a corresponding start and end date. The file is structured as a Python list where you edit the individual elements. The provided _userConfig.py_ file is an example of how to gather the Tweets of Donald Trump for a give particular date. The intended purpose of this tool is to gather historical tweets in order for a time range that are otherwise not available via the Twitter API. 
+This is an updated version from the original project created by @Andrew-Wen (which can be found in the following link: [[https://github.com/thepanacealab/junzhi_project1]])
 
-_NOTE: You need to have your Twitter API keys on a file named: api_keys.json. We provide a template under copy_api_keys.sample, you should edit the file with the proper keys, save it, and rename it to api_keys.json._
+This utility allows users to get tweets:
+  * By specifying a single user or hashtag.
+  * By specifying
+ 
+ Moreover, this utility can obtain parameters (for each tweet) such as: tweet id, date, username, permalink, tweet text, number of retweets and mentions (if applicable), a list of mentions included in the tweet (if applicable), and a list of hashtags included (if applicable). In order to get tweets either by username(s) or hashtag(s), two scripts are provided:
 
-### Output:
-A single file called tweetsids.json that contains the tweet identifiers for all the scrapped tweets. Note that you still need to 'hydrate' these identifiers to get the full proper json object. This file can either be hydrated with Twarc or use the get_metadata.py utility for this purpose.
+ **scrape_by_username.py** (Scrape by username)
+ 
+ **Example 1 - Get tweets from a singal user:**
+```bash
+python -c 'from scrape_by_username import *; scrape_by_username([\"covidsolidarit1\"], \"2020-07-28\", \"2020-07-29\")'
+```
+**Example 2 - Get tweets from multiple users:** 
+```bash
+python -c 'from scrape_by_username import *; scrape_by_username([\"barackoabama\", \"realdonaldtrump\"], \"2020-07-28\", \"2020-07-29\")'
+```
+ 
+  **scrape_by_hashtag.py** (Scrape by hashtag)
+
+**Example 1 - Get tweets from a hashtag:**
+```bash
+python -c 'from scrape_by_hashtag import *; scrape_by_hashtag([\"#longcovid\"], \"2020-07-28\", \"2020-07-29\")'
+```
+**Example 2 - Get tweets from multiple hashtags:**
+```bash
+python -c 'from scrape_by_hashtag import *; scrape_by_hashtag([\"#longcovid\", \"#covid19\"], \"2020-07-28\", \"2020-07-29\")'
+```
+ 
+ ### Output: 
+1. A JSON file which contains all the fields mentioned above (per tweet)
+1. A CSV file which contains all the fields mentioned above (per tweet)
+ 
+ You will get two output files:
+ 
 
 **get_metadata.py** This utility will take a file which meets the following requirements:
 
