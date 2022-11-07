@@ -34,7 +34,7 @@ This is an updated version from the original project created by @Andrew-Wen (whi
 
 This utility allows users to get tweets:
   * By specifying a single user or hashtag.
-  * By specifying
+  * By specifying multiple users or hashtags.
  
  Moreover, this utility can obtain parameters (for each tweet) such as: tweet id, date, username, permalink, tweet text, number of retweets and mentions (if applicable), a list of mentions included in the tweet (if applicable), and a list of hashtags included (if applicable). In order to get tweets either by username(s) or hashtag(s), two scripts are provided:
 
